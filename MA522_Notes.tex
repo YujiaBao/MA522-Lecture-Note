@@ -3275,6 +3275,128 @@ For convention, we write $T(x)$ as $Tx$.
     \end{description}
 \end{proof}
 
-\subsection*{Invertible linear opeartors and the van Neumann series}
+\subsection*{Invertible linear operators and the van Neumann series}
+\begin{thm}
+    Let $X$ and $Y$ be Banach spaces and let $\Omega(X,Y)$ denote the set of
+    bijections in $L(X,Y)$.
+    Then $\Omega(X,Y)$ is open subset of $L(X,Y)$ and the inversion map
+    $A\mapsto A^{-1}$ is a continuous bijection of $\Omega(X,Y)$ onto
+    $\Omega(Y,X)$
+\end{thm}
+\begin{proof}
+    By corollary of the open mapping theorem, we know $A\in\Omega(X,Y)$ implies
+    $A^{-1}\in L(Y,X)$.
+    Thus $A\mapsto A^{-1}$ is a bijection.
+    Remains to prove that $\Omega(X,Y)$ is open and $A\mapsto A^{-1}$ is
+    continuous.
+    \begin{description}
+        \item[Lemma: ]
+            If $A\in\Omega(X,Y)$ and $\|B-A\|_{X\rightarrow
+            Y}<1/\|A^{-1}\|_{Y\rightarrow X}$.
+            Then $B\in\Omega(X,Y)$ and 
+            \[
+                B^{-1} =  B^{-1}AA^{-1} = 
+                (A^{-1}B)^{-1}A^{-1}=(I-(I-A^{-1}B))^{-1}A^{-1} = \sum_{n=0}^\infty(I-A^{-1}B)^n A^{-1},
+            \]
+            with convergence (indeed absolute convergence) in $L(Y,X)$ and
+            \[
+                \|B^{-1}-A^{-1}\|_{Y\rightarrow X}\leq\frac{\|A^{-1}\|^2\cdot\|A-B\|}{1-\|A^{-1}\|\cdot\|A-B\|}
+            \]
+            \begin{proof}[Proof of the lemma]
+                Observe that 
+                \[
+                    \|(I-A^{-1}B)^nA^{-1}\|\leq
+                    \|I-A^{-1}B\|^n\cdot \|A^{-1}\|
+                    =\|A^{-1}(A-B)\|^n\cdot\|A^{-1}\|
+                    \leq \|A^{-1}\|^{n+1}\cdot\|A-B\|^n.
+                \]
+                By hypothesis, we know $\|A^{-1}\|\cdot\|A-B\|<1$.
+                So by geometric series test, $\sum_{n=0}^\infty (I-A^{-1}B)^nA^{-1}$ converges absolutely.
+                And since $L(Y,X)$ is a Banach space, the series converges.
+                Now we compute 
+                \[\begin{aligned}
+                    B\cdot\sum_{n=0}^\infty (I-A^{-1}B)^nA^{-1}
+                    &= \sum_{n=0}^\infty B(I-A^{-1}B)^nA^{-1}\\
+                    &= \sum_{n=0}^\infty A(I-(I-A^{-1}B))(I-A^{-1}B)^nA^{-1}\\
+                    &=\sum_{n=0}^\infty A(I-A^{-1}B)^nA^{-1} - \sum_{n=1}^\infty A(I-A^{-1}B)^nA^{-1}\\
+                    &=A(I-A^{-1}B)^0A^{-1}\\
+                    &=I.
+                \end{aligned}\]
+                For the other direction, we compute
+                \[\begin{aligned}
+                        \left(\sum_{n=0}^\infty (I-A^{-1}B)^nA^{-1}\right)B
+                        &= \sum_{n=0}^\infty (I-A^{-1}B)^n A^{-1}B\\
+                        &=\sum_{n=0}^\infty (I-A^{-1}B)^n(I-(I-A^{-1}B))\\
+                        &=\sum_{n=0}^\infty (I-A^{-1}B)^n - \sum_{n=1}^\infty (I-A^{-1}B)^n\\
+                        &=(I-A^{-1}B)^0\\
+                        &=I.
+                \end{aligned}\]
+                Note the first equality is due to the continuity of $B$.
+                \begin{description}
+                    \item[Aside: ]
+                        $S_N=\sum_{n=0}^N(I-A^{-1}B)$.
+                        We know $\lim S_N=S$.
+                        We want $B\cdot S=\lim Bs_N$.
+                        \[
+                            \|BS-BS_N\| \leq \|B\|\cdot\|S-S_N\| \rightarrow 0.
+                        \]
+                \end{description}
+                So $B\in\Omega(X,Y)$ and $B^{-1}$ is indeed the given sum.
+                Then finally, we have
+                \[
+                    \begin{aligned}
+                        \|\sum_{n=1}^\infty (I-A^{-1}B)^nA^{-1}\|
+                        &\leq \sum_{n=1}^\infty \|I-A^{-1}B\|^n\cdot\|A^{-1}\|\\
+                        &\leq \sum_{n=1}^\infty \|A^{-1}\|^{n+1}\cdot\|A-B\|^n\\
+                        &=\frac{\|A^{-1}\|^2\cdot\|A-B\|}{1-\|A^{-1}\|\cdot\|A-B\|}.
+                    \end{aligned}
+                \]
+            \end{proof}
+    \end{description}
+\end{proof}
+
+\subsection*{Multivariable Calculus}
+\begin{defn}
+    Let $(V, \|\cdot\|_C)$, $(W, \|\cdot\|_W)$ be normed vector spaces.
+    Let $E$ be an open subset of $V$ and $f:E\rightarrow W$.
+    We say $f$ is differentiable at $v\in E$ if $\exists L_v\in \mathcal{L}(V,W)$ s.t.
+    \[
+        \lim_{h\in V, h\rightarrow 0} \frac{\|f(v+h)-f(v)-L_v(h)\|}{\|h\|} = 0.
+    \]
+    We call $L_v$ the total derivative of $f$ at $v$ and write
+    \[
+        Df_v = Df(v) = L_v \in \mathcal{L}(V,W).
+    \]
+\end{defn}
+
+\begin{prop}
+    Total derivatives, if they exist, are unique.
+\end{prop}
+\begin{proof}
+    If $L_v$ and $L_v'$ both satisfies the equation above.
+    Then by triangle inequality, we have
+    \[
+        \lim_{h\rightarrow 0}\frac{\|L_v(h)-L_v'(h)\|}{\|h\|} = 0.
+    \]
+    So $\forall \epsilon>0$, $\exists \delta>0$, s.t.\ $\|h\|<\delta$ implies
+    \[
+        \frac{\|L_v(h)-L_v'(h)\|}{\|h\|}<\epsilon.
+    \]
+    This implies (HW) $\|L_v-L_v'\|<\epsilon$.
+    Since $\epsilon$ is arbitrary, $L_v=L_v'$.
+\end{proof}
+
+\begin{prop}
+    If $f$ is differentiable at $v$, then $f$ is continuous at $v$.
+\end{prop}
+\begin{proof}
+    If $f$ is differentiable at $v$, look at
+    \[
+        \|f(v+h)-f(v)\|
+        =o(\|h\|)+\|L_v(h)\|
+        \leq o(\|h\|)+\|L_v\|\cdot\|h\|
+        \rightarrow 0.
+    \]
+\end{proof}
 \end{document}
 
