@@ -1391,6 +1391,7 @@ We want a simpler characterization of totally boundedness.
 \end{prop}
 
 % Part Two
+% Second Midterm Starts from here
 \begin{thm}[(Baby) Stone-Weierstress Theorem]
     Let $f:[a,b]\rightarrow\mathbb{R}$ be a continuous function.
     There exists a sequence $\{P_n\}$ of polynomials, s.t. $P_n\rightarrow f$
@@ -1623,7 +1624,7 @@ We want a simpler characterization of totally boundedness.
         exists a polynomial $P$ on $\mathbb{R}$ such that
         $|P(y)-|y||<\epsilon$ for any $y\in[-a,a]$.
         Define $g\coloneqq P\circ f$.
-        Then $g(x)=\sum_{n=0}^N a_nf^n$, where the $a_n$'s are the coeffients of
+        Then $g(x)=\sum_{n=0}^N a_nf(x)^n$, where the $a_n$'s are the coeffients of
         $P$.
         Since $\mathcal{C}$ is an algebra, $g\in\mathcal{C}$.
         Furthermore, $\forall x\in K$, $f(x)\in[-a,a]$.
@@ -1643,12 +1644,13 @@ We want a simpler characterization of totally boundedness.
             \min\{f_1,\ldots,f_{N+1}\}&=\min\{\min\{f_1,\ldots,f_N\},f_{N+1}\}.
         \end{aligned}$$
 
-        \item[Claim 3:] (Approximate $f$ from not too far below.)
+        \item[Claim 3:] 
         Let $f\in\mathcal{C}^0(K)$, $\epsilon>0$ and $x_0\in K$.
-        Then, $\exists g_{x_0}\in\mathcal{C}$, s.t. $g_{x_0}(x_0)=f(x_0)$ and
-        $g_{x_0}(x)>f(x)-\epsilon$ for all $x\in K$.\\
+        Then $\exists g_{x_0}\in\mathcal{C}$, s.t. $g_{x_0}(x_0)=f(x_0)$ and
+        $g_{x_0}(x)>f(x)-\epsilon$ for all $x\in K$ (approximate $f$ from not
+        too far below).\\
         Let $x_1\in K$. Then $\exists h_{x_1}\in\mathcal{C}$, s.t.
-        $h_{x_0}=f(x_0)$ and $h_{x_1}(x_1)=f(x_1)$.
+        $h_{x_1}(x_0)=f(x_0)$ and $h_{x_1}(x_1)=f(x_1)$.
         For $y\in K$, define
         $$G_y\coloneqq \{x\in K:h_y(x)>f(x)-\epsilon\}.$$
         Then $G_y$ is open since $h_y$ is continuous.
@@ -1677,8 +1679,8 @@ We want a simpler characterization of totally boundedness.
         Finally, define
         $g=\min\{g_{y_1},\ldots,g_{y_n}\}$.
         Then $\forall x$, $g(x)>f(x)-\epsilon$.
-        If $x\in H_{y_n}$, then $g(x)\leq g_{y_n}(x)<f(x)+\epsilon$.
-        Thus, $\forall x$, $\exists n$, s.t. $x\in H_{y_n}$.
+        Also $\exists n$, s.t. $x\in H_{y_n}$.
+        Then $g(x)\leq g_{y_n}(x)<f(x)+\epsilon$.
     \end{description}
 \end{proof}
 
@@ -1714,12 +1716,15 @@ We want a simpler characterization of totally boundedness.
 
     Here is one solution, $g(t)=0$ for all $t$.
     Here is another solution,
-        $$g(t)=\left\{
+    \[
+        g(t)=\left\{
             \begin{aligned}
                 &ct^{3/2},\quad&&t\geq0,\\
-                &0,&& t<0.\\
+                &0,&& t<0,\\
             \end{aligned}
-        \right.$$
+        \right.
+    \]
+    where $c^2=8/27$.
     Actually, there are infinitely many distinct solutions.
 \begin{proof}
     Observe that $g$ solves our initial value problem if and only if
@@ -1746,7 +1751,7 @@ We want a simpler characterization of totally boundedness.
     $\mathcal{M}$.
     The idea is to apply contraction mapping theorem.
     Observe that $\mathcal{M}$ is closed since it is the intersection of two
-    closed sets (Careful).
+    closed sets (careful here).
     Also since $\mathcal{C}^0(I,\mathbb{R})$ is complete, $\mathcal{M}$ is
     complete.
     Since the function $g(t)=y_0, \forall t\in I$ is in $\mathcal{M}$,
@@ -1778,7 +1783,7 @@ We want a simpler characterization of totally boundedness.
         By contraction mapping theorem and above computation, we can uniquely
         solve the initial value problem for a shorter time, say on
         $I_0\coloneqq[t_0-a_0,t_0+a_0]$, where $a_0\coloneqq\min\{a,b/M,1/(2C)\}$.
-        Now define $t_{-1}\coloneqq t_0-a_1$ and $t_{1}\coloneqq t_0+a_1$.
+        Now define $t_{-1}\coloneqq t_0-a_0$ and $t_{1}\coloneqq t_0+a_0$.
         Look at the new initial value problem on $[t_{-1}-a_0,t_1+a_0]$.
         Define $y_{\pm1}\coloneqq g_0(t_{\pm1})$.
         The new initial value problem can be written as
@@ -1828,7 +1833,7 @@ We want a simpler characterization of totally boundedness.
             Ce^{2C|s-t_0|}e^{-2C|s-t_0|}|g_1(s)-g_2(s)|\,\mathrm{d}s\right|\\
             &\leq e^{-2C|t-t_0|}\left| \int_{t_0}^t
             Ce^{2C|s-t_0|}d_C(g_1,g_2)\,\mathrm{d}s\right|\\
-            &\leq e^{-2C|t-t_0|} C d_C(g_1,g_2)\cdot\frac{1}{2C}e^{2C|t-t_0|}\\
+            &\leq e^{-2C|t-t_0|}\cdot C\cdot d_C(g_1,g_2)\cdot\frac{1}{2C}e^{2C|t-t_0|}\\
             &=\frac{1}{2}d_C(g_1,g_2)
         \end{aligned}$$
         So $\Phi$ is a contraction on $\mathcal{M}$ with respect to $d_C$ and
@@ -1852,8 +1857,11 @@ We want a simpler characterization of totally boundedness.
         (x_1y_1-x_2y_2)+i(x_1y_2+x_2y_1)\in\mathbb{C}$.
         \item $-(x+iy) = -x-iy\in\mathbb{C}$.
         \item If $x_2+iy_2\neq 0$ (i.e. $x_2\neq 0$ or $y_2\neq 0$), then
-        $$\frac{(x_1+iy_1)}{(x_2+iy_2)}\cdot\frac{(x_2-iy_2)}{(x_2-iy_2)}
-        =\frac{(x_1x_2+y_1y_2)}{x_2^2+y_2^2}+i\frac{(-x_1y_2+x_2y_1)}{x_2^2+y_2^2}.$$
+        \[
+                \frac{(x_1+iy_1)}{(x_2+iy_2)} =
+                \frac{(x_1+iy_1)}{(x_2+iy_2)}\cdot\frac{(x_2-iy_2)}{(x_2-iy_2)}
+                =\frac{(x_1x_2+y_1y_2)}{x_2^2+y_2^2}+i\frac{(-x_1y_2+x_2y_1)}{x_2^2+y_2^2}.
+        \]
     \end{itemize}
 \end{defn}
 \begin{defn}
@@ -1911,7 +1919,7 @@ We want a simpler characterization of totally boundedness.
     $$\left|\sum_{j=m}^n f_j(x)\right|
     \leq \sum_{j=m}^n\left|f_j(x)\right|
     \leq\sum_{j=m}^n M_j.$$
-    Apply the fact that $\sum_{n=0}^\infty M_n$ is Cauchy and complete the proof.
+    Since $\sum_{n=0}^\infty M_n$ is Cauchy, we are done.
 \end{proof}
 
 \begin{thm}[Root test]
@@ -1961,6 +1969,21 @@ We want a simpler characterization of totally boundedness.
     Outside $\{|z-z_0|\leq R\}$, root test shows divergence.
 \end{proof}
 
+\begin{lemma}
+    The series 
+    $$f^{(k)}(y)=\sum_{n=k}^\infty c_n n(n-1)\cdots (n-k+1)(x-a)^{n-k},$$
+    has the same radius of convergence as $f(x)=\sum_{n=0}^\infty c_n(x-a)^n$.
+\end{lemma}
+\begin{proof}
+    We want to show
+    $$\lim_{n\rightarrow\infty}\left(n(n-1)\cdots(n-k+1)\right)^{1/n}=1.$$
+    Since $\lim_{n\rightarrow\infty}\left(n(n-1)\cdots(n-k+1)\right)^{1/n}\geq1$,
+    it sufficies to show that the $\lim\sup$ is $\leq 1$.
+    But 
+    $$\lim_{n\rightarrow\infty}\sup \left(n(n-1)\cdots(n-k+1)\right)^{1/n}\leq \lim_{n\rightarrow\infty}
+    n^{k/n}=(\lim_{n\rightarrow\infty} n^{1/n})^k=1.$$
+\end{proof}
+
 \begin{thm}
     Let $R$ be the radius of convergence of the power series $\sum_{n=0}^\infty c_n (x-a)^n$.
     Assume $R>0$ and define $f(x)=\sum_{n=0}^\infty c_n(x-a)^n$ on $I\coloneqq (a-R,a+R)$.
@@ -1983,20 +2006,6 @@ We want a simpler characterization of totally boundedness.
     Under the hypotheses of the theorem, $f^{(k)}(a)=k!c_k$, i.e. $c_k=\frac{1}{k!}f^{(k)}(a)$.
 \end{corollary}
 
-\begin{lemma}
-    The series 
-    $$f^{(k)}(y)=\sum_{n=k}^\infty c_n n(n-1)\cdots (n-k+1)(x-a)^{n-k},$$
-    has the same radius of convergence as $f(x)=\sum_{n=0}^\infty c_n(x-a)^n$.
-\end{lemma}
-\begin{proof}
-    We want to show
-    $$\lim_{n\rightarrow\infty}\left(n(n-1)\cdots(n-k+1)\right)^{1/n}=1.$$
-    Since $\lim_{n\rightarrow\infty}\left(n(n-1)\cdots(n-k+1)\right)^{1/n}\geq1$,
-    it sufficies to show that the $\lim\sup$ is $\leq 1$.
-    But 
-    $$\lim_{n\rightarrow\infty}\sup \left(n(n-1)\cdots(n-k+1)\right)^{1/n}\leq \lim_{n\rightarrow\infty}
-    n^{k/n}=(\lim_{n\rightarrow\infty} n^{1/n})^k=1.$$
-\end{proof}
 
 \begin{thm}
     Let $I$ denote the set of all points $x$ at which $\sum_{n=0}^\infty c_n(x-a)^n$ converges.
@@ -2046,6 +2055,11 @@ We want a simpler characterization of totally boundedness.
     Then if $1-\delta<x<1$,
     $$\left|(1-x)\sum_{j=0}^{N-1}(s-s_j)x^j\right|
     \leq (1-x)\sum_{j=0}^{N-1}|s-s_j|<\delta\cdot \sum_{j=0}^{N-1}|s-s_j|= \epsilon.$$
+    Combining with the previous result, we obtain
+    \[
+        |f(x) - f(1)| = \left|(1-x)\sum_{j=0}^\infty (s_j-s)x^j\right| <
+        2\epsilon.
+    \]
 \end{proof}
 
 \begin{defn}
@@ -2061,7 +2075,7 @@ We want a simpler characterization of totally boundedness.
 \end{thm}
 \begin{proof}
     Some notations:
-    $A_n\coloneqq \sum_{n=0}^N a_n$, $B_N\coloneqq \sum_{n=0}^N b_n$, $C_N\coloneqq \sum_{n=0}^N
+    $A_N\coloneqq \sum_{n=0}^N a_n$, $B_N\coloneqq \sum_{n=0}^N b_n$, $C_N\coloneqq \sum_{n=0}^N
     c_n$, $A\coloneqq \sum a_n$, $B\coloneqq \sum b_n$, $\bar{A}=\sum |a_n|$, $M\coloneqq \sup B_N$. 
     $$\begin{aligned}
         C_N&=c_0+\cdots + c_N\\
@@ -2476,7 +2490,7 @@ We want a simpler characterization of totally boundedness.
     Let $f: I\rightarrow J$ be a continuous bijection onto $J$.
     Then $f$ has a continuous inverse.
     Furthermore, if $y\in\text{int}(J)$ and $f$ is differentiable at $f^{-1}(y)$ with $f'(f^{-1}(y))\neq 0$.
-    Then $f^{-1}$ is differentiable at $f(y)$ and 
+    Then $f^{-1}$ is differentiable at $y$ and 
     \[(f^{-1})'(y) = \frac{1}{f'(f^{-1}(y))}.\]
 \end{lemma}
 \begin{note}
@@ -2507,7 +2521,7 @@ We want a simpler characterization of totally boundedness.
             Contradiction.
             So $g(y^-)=g(y)$. Similarly, $g(y^+) = g(y)$.
         \item[Clam 2:] If $y\in \text{int}(J)$ and $f$ is differentiable at $f^{-1}(y)$ with $f'(f^{-1}(y))\neq0$.
-            Then $f^{-1}$ is differentiable at $f(y)$.\\
+            Then $f^{-1}$ is differentiable at $y$.\\
             We want to evaluate
             \[\lim_{h\rightarrow 0}\frac{g(y+h)-g(y)}{y+h-y} = \lim_{h\rightarrow0}\frac{g(y+h)-g(y)}{f(g(y+h)) -
             f(g(y))}.\]
@@ -2526,8 +2540,8 @@ We want a simpler characterization of totally boundedness.
 \end{proof}
 
 \begin{defn}
-    Since $E:x\rightarrow e^x$ is continuous, differentiable, strictly increasing and maps $\mathbb{R}$ onto
-    $(0,\infty)$. THus it has an inverse, which we call $\log$, that is continuous, differentiable, strictly increasing
+    Since $E:x\mapsto e^x$ is continuous, differentiable, strictly increasing and maps $\mathbb{R}$ onto
+    $(0,\infty)$. Thus it has an inverse, which we call $\log$, that is continuous, differentiable, strictly increasing
     and maps $(0,\infty)$ onto $\mathbb{R}$.
 \end{defn}
 \begin{property}
@@ -2614,7 +2628,7 @@ This is saying $\log$ goes to infinity very slow.
 \begin{property}
     Trigonometric functions have the following properties:
     \begin{enumerate}
-        \item $C(x)^2 + S(x)^2+1$, $\forall x\in\mathbb{R}$.
+        \item $C(x)^2 + S(x)^2=1$, $\forall x\in\mathbb{R}$.
         \item $C(0) = 1$ and $S(0) = 0$.
         \item $C'(x) = -S(x)$, $S'(x) = C(x)$, $\forall x\in \mathbb{R}$.
     \end{enumerate}
@@ -2897,7 +2911,7 @@ This is saying $\log$ goes to infinity very slow.
 \begin{thm}[Triangle inequality]
     For $\{a_n\},\ \{b_n\}\in l^p$, $\{a_n+b_n\}\in l^p$ and 
     \[
-        |(a_n+b_n)|_{l^p} \leq \|\{a_n\}\|_{l^p} + \|\{b_n\}\|_{l^p}.
+        \|(a_n+b_n)\|_{l^p} \leq \|\{a_n\}\|_{l^p} + \|\{b_n\}\|_{l^p}.
     \]
     Consequently, $l^p$ is a normed vector space.
 \end{thm}
@@ -2973,7 +2987,8 @@ This is saying $\log$ goes to infinity very slow.
         \sum_n |x_{n,k}| \leq  \sum_n \left(\sum_k |x_{n,k}|^p\right)^{1/p} = \sum_n \|\bm{x}_n\|_{l^p} < \infty.
     \]
     So we can define a sequence $\{y_k\}$ by $y_k = \sum_n x_{n,k}$.
-    We need to show $\{y_k\} \in l^p$ and $\sum \bm{x}_n = \{y_k\}$ with convergenc in $l^p$.
+    We need to show $\{y_k\} \in l^p$ and $\sum \bm{x}_n = \{y_k\}$ with
+    convergence in $l^p$.
     Choose $q$ with $\frac{1}{q} + \frac{1}{p} = 1$ and pick any $\{a_k\}\in l^q$ with $\|\{a_k\}\|_{l^q} = 1$.
     We see
     \[
@@ -3048,7 +3063,8 @@ For convention, we write $T(x)$ as $Tx$.
     \end{aligned}\]
     Define norm
     \[
-        \|T\|_{X\rightarrow Y} \coloneqq \sup_{0\neq x\in X}\frac{\|Tx\|}{\|x\|}.
+        \|T\|_{X\rightarrow Y} \coloneqq \sup_{0\neq x\in
+        X}\frac{\|Tx\|_Y}{\|x\|_X}.
     \]
 \end{defn}
 
