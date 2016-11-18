@@ -3053,15 +3053,17 @@ For convention, we write $T(x)$ as $Tx$.
 \begin{defn}
     Define
     \[
-        L(X,Y)\coloneqq \left\{\text{bounded linear operators from }X\text{ to }Y\right\}.
+        \mathcal{L}(X,Y)\coloneqq \left\{\text{bounded linear operators from }X\text{ to }Y\right\}.
     \]
-    Then $L(X,Y)$ is a vector space, since
+    Then $\mathcal{L}(X,Y)$ is a vector space, since
     \[\begin{aligned}
             \|(\alpha T+\beta S) x\|_Y & = \|\alpha(Tx) + \beta(Sx)\|_Y\\
-                                       &\leq |\alpha|\cdot\|Tx\| + |\beta|\cdot \|Sx\|\\
-                                       &\leq (|\alpha| C_1 + |\beta| C_2)\|x\|.
+                                       &\leq |\alpha|\cdot\|Tx\|_Y + |\beta|\cdot \|Sx\|_Y\\
+                                       &\leq (|\alpha| C_1 + |\beta| C_2)\|x\|_X.
     \end{aligned}\]
-    Define norm
+\end{defn}
+\begin{defn}
+    Define the norm
     \[
         \|T\|_{X\rightarrow Y} \coloneqq \sup_{0\neq x\in
         X}\frac{\|Tx\|_Y}{\|x\|_X}.
@@ -3074,8 +3076,8 @@ For convention, we write $T(x)$ as $Tx$.
         \item $\|T\| = \min\left\{ C:\|Tx\|\leq C\|x\|,\ \forall x\in X\right\}$, in particular, $\forall x$,
             $\|Tx\|\leq \|T\|\cdot\|x\|$;
         \item $\|\cdot\|$ is a norm;
-        \item If $Y$ is a Banach space, so is $L(X,Y)$;
-        \item If $X, Y, Z$ are normed vector spaces and $T\in L(X,Y)$, $S\in L(Y,Z)$, then $S\circ T\in L(X,Z)$ and
+        \item If $Y$ is a Banach space, so is $\mathcal{L}(X,Y)$;
+        \item If $X, Y, Z$ are normed vector spaces and $T\in \mathcal{L}(X,Y)$, $S\in \mathcal{L}(Y,Z)$, then $S\circ T\in \mathcal{L}(X,Z)$ and
             $\|S\circ T\| \leq \|S\|\cdot \|T\|$.
     \end{enumerate}
 \end{prop}
@@ -3083,7 +3085,7 @@ For convention, we write $T(x)$ as $Tx$.
     \begin{enumerate}
         \item By definition
             \[
-                \|T\| = \sup_{0\neq x\in X}\frac{\|Tx\|}{\|x\|} = \sup_{0\neq x\in X}\|T\frac{x}{\|x\|}\| =
+                \|T\| = \sup_{0\neq x\in X}\frac{\|Tx\|}{\|x\|} = \sup_{0\neq x\in X}\left\|T\frac{x}{\|x\|}\right\| =
                 \sup_{\|y\|=1}\|Ty\|.
             \]
         \item 
@@ -3169,13 +3171,13 @@ For convention, we write $T(x)$ as $Tx$.
 
 \begin{thm}[Open Mapping Theorem]
     Let $X$ and $Y$ be Banach spaces.
-    Then a surjective map $T\in L(X,Y)$ is also an open map.
+    Then a surjective map $T\in \mathcal{L}(X,Y)$ is also an open map.
 \end{thm}
 \begin{proof}
-    Assume $T\in L(X,Y)$ is surjective.
+    Assume $T\in \mathcal{L}(X,Y)$ is surjective.
     Then, $Y=\cup_{n=1}^\infty T(B_n(0))$.
     By the Baire Category Theorem ($Y$ is complete), for some $n$, $\overline{T(B_n(0))}$ has nonempty interior.
-    Since $\overline{T(B_n(0))} = n\overline{T(B_1(0))}$, $\overline{T(B_1(0))}$ has nonempty interior.
+    Since $\overline{T(B_n(0))} = n\overline{T(B_1(0))}$ by linearity of $T$, $\overline{T(B_1(0))}$ has nonempty interior.
     Suppose $y_0 \in \text{int}(\overline{T(B_1(0))})$.
     Then $\exists r>0$, s.t.\ $B_r(y_0) \subseteq \overline{T(B_1(0))}$.
     \begin{description}
@@ -3262,14 +3264,14 @@ For convention, we write $T(x)$ as $Tx$.
                     Let $x, x'\in X$ and $\alpha, \alpha'\in\mathbb{R}$, then
                     $(x, Tx), (x', Tx')\in \Gamma_T$.
                     So $(\alpha x + \alpha'x', \alpha Tx + \alpha'Tx')\in\Gamma_T$.
-                    Thus bu definition of $\Gamma_T$, $\alpha Tx + \alpha' Tx' = T(\alpha x+\alpha'x')$.
+                    Thus by definition of $\Gamma_T$, $\alpha Tx + \alpha' Tx' = T(\alpha x+\alpha'x')$.
                 \item[Claim 2: ]$T$ is continuous.\\
                     We know $\Gamma_T$ is a Banach space.
                     We consider the projections $P_x:\Gamma_T\rightarrow X$ with $(x,y)\mapsto x$
                     and $P_y:\Gamma_T\rightarrow Y$ with $(x,y)\mapsto y$.
                     Then $P_x$ and $P_y$ are bounded, since $\|y\|, \|x\| \leq \|(x,y)\|$.
                     Furthermore, $P_x$ is a bijection.
-                    So $P_x^{-1} : X\rightarrow \Gamma_T$,  $x\mapsto (x, Tx)$.
+                    So $P_x^{-1} : X\rightarrow \Gamma_T$,  $x\mapsto (x, Tx)$, is a bounded linear operator (by the previous corollary).
                     Finally, $T=P_y\circ P_x^{-1}$.
             \end{description}
     \end{description}
@@ -3278,14 +3280,14 @@ For convention, we write $T(x)$ as $Tx$.
 \subsection*{Invertible linear operators and the van Neumann series}
 \begin{thm}
     Let $X$ and $Y$ be Banach spaces and let $\Omega(X,Y)$ denote the set of
-    bijections in $L(X,Y)$.
-    Then $\Omega(X,Y)$ is open subset of $L(X,Y)$ and the inversion map
+    bijections in $\mathcal{L}(X,Y)$.
+    Then $\Omega(X,Y)$ is open subset of $\mathcal{L}(X,Y)$ and the inversion map
     $A\mapsto A^{-1}$ is a continuous bijection of $\Omega(X,Y)$ onto
     $\Omega(Y,X)$
 \end{thm}
 \begin{proof}
     By corollary of the open mapping theorem, we know $A\in\Omega(X,Y)$ implies
-    $A^{-1}\in L(Y,X)$.
+    $A^{-1}\in \mathcal{L}(Y,X)$.
     Thus $A\mapsto A^{-1}$ is a bijection.
     Remains to prove that $\Omega(X,Y)$ is open and $A\mapsto A^{-1}$ is
     continuous.
@@ -3298,7 +3300,7 @@ For convention, we write $T(x)$ as $Tx$.
                 B^{-1} =  B^{-1}AA^{-1} = 
                 (A^{-1}B)^{-1}A^{-1}=(I-(I-A^{-1}B))^{-1}A^{-1} = \sum_{n=0}^\infty(I-A^{-1}B)^n A^{-1},
             \]
-            with convergence (indeed absolute convergence) in $L(Y,X)$ and
+            with convergence (indeed absolute convergence) in $\mathcal{L}(Y,X)$ and
             \[
                 \|B^{-1}-A^{-1}\|_{Y\rightarrow X}\leq\frac{\|A^{-1}\|^2\cdot\|A-B\|}{1-\|A^{-1}\|\cdot\|A-B\|}
             \]
@@ -3396,6 +3398,131 @@ For convention, we write $T(x)$ as $Tx$.
         =o(\|h\|)+\|L_v(h)\|
         \leq o(\|h\|)+\|L_v\|\cdot\|h\|
         \rightarrow 0.
+    \]
+\end{proof}
+
+\begin{eg}
+    If $f\in \mathcal{L}(V,W)$, then $f$ is differentiable at each point $v\in V$ and $Df_v=f$.
+\end{eg}
+\begin{proof}
+    By linearity, $f(v+h) - f(v) - f(h) \equiv 0$ and we are done.
+\end{proof}
+
+\begin{eg}
+    Let $V = \mathbb{R}^k$, $W=\mathbb{R}$.
+    Let $f(x) = \|x\|_2^2 = \sum_{j=1}^k x_j^2$.
+    Then $\forall v\in\mathbb{R}^k$, $f$ is differentiable at $v$ and $Df_v(h) = 2v\cdot h$.
+    In matrix form, 
+    $Df_v=[2v_1, 2v_2', \ldots, 2v_k]$.
+\end{eg}
+\begin{proof}
+    \[
+        \lim_{h\rightarrow 0}\frac{\|f(v+h)-f(v)-2v\cdot h\|}{\|h\|} = \lim_{h\rightarrow 0}\frac{\|h\|^2}{\|h\|} = 0.
+    \]
+\end{proof}
+
+\begin{eg}
+    Let $V$ be an arbitrary space but $V\neq \{0\}$, $W=\mathbb{R}$.
+    Let $f(x) = \|x\|$ (any norm).
+    Then $f$ is not differentiable at $0$.
+\end{eg}
+\begin{proof}
+    Let $L_v\in\mathcal{L}(V,\mathbb{R})$.
+    Let $e\in V$ with $\|e\|=1$.
+    By definition,
+    \[
+        0=\lim_{h\in\mathbb{R}, h\rightarrow0}\frac{\left\|f(0+he)-f(0)-L_v(he)\right\|}{\|h\|}
+        =\lim_{h\in\mathbb{R}, h\rightarrow0}\frac{\left\| |h|-hL_v(e)\right\|}{\|h\|}
+        =\lim_{h\in\mathbb{R}, h\rightarrow0}\left|1-\frac{h}{|h|}L_v(E)\right|.
+    \]
+    If $L_v(e)=0$, this is false because the limit is $1$.
+    If $L_v(e)\neq 0$, this is false because the left and right limits disagree.
+\end{proof}
+
+\begin{eg}
+    Let $V=\mathcal{C}^0([a,b])$, $W=\mathbb{R}$.
+    Let $F(g) = \int_a^b (g(x))^2\,\mathrm{d}x$ is differentiable at $g$, $\forall g\in \mathcal{C}^0([a,b])$ and
+    $DF_g(f)=\int_a^b2f(x)g(x)\,\mathrm{d}x$.
+\end{eg}
+\begin{proof}
+    \[
+        \|F(g+h)-F(g)-DF_v(h)\| = \left\| \int_a^b h^2(x)\,\mathrm{d}x\right\| \leq (b-a) \|h\|^2
+    \]
+\end{proof}
+
+\begin{eg}
+    Let $X$, $Y$ be Banach spaces.
+    Define $V=\mathcal{L}(X,Y)$, $W=\mathcal{L}(Y, X)$ and $E=\Omega(X,Y)$ (the set of all bijections from $X$ to $Y$),
+    $F(T) = T^{-1}$, $T\in \Omega(X,Y)$.
+    Then $F$ is differentiable at each point of $E$ and
+    \[
+        DF_T(h) = -T^{-1}hT^{-1}
+    \]
+    Remember that $DF_T\in\mathcal{L}(V,W)$, $h\in\mathcal{L}(X,Y)$ and $DF_T(h)\in\mathcal{L}(Y,X)$.
+\end{eg}
+\begin{proof}
+    Let $T\in\Omega(X,Y)$.
+    For $h$ small, we can write 
+    \[
+        F(T+h) = (T+h)^{-1} = (T(I+T^{-1}h))^{-1} = (I+T^{-1}h)^{-1}T^{-1} = \sum_{n=0}^\infty (-1)^n(T^{-1}h)^nT^{-1}.
+    \]
+    Now
+    \[
+        F(T+h) - F(T) + T^{-1}hT^{-1}
+        = \sum_{n=2}^\infty (-1)^n(T^{-1}h)^nT^{-1}
+        = \mathcal{O}(\|h\|^2),
+    \]
+    since $F(t)$ cancels out the zeroth term and $T^{-1}hT^{-1}$ cancels out the first term.
+    So
+    \[
+        \|F(T+h) - F(T) + T^{-1}hT^{-1}\|
+        \leq \frac{\|T^{-1}h\|^2\cdot\|T^{-1}\|}{1-\|T^{-1}h\|}
+        \leq \frac{\|T^{-1}\|^3\cdot\|h\|^2}{1-\|T^{-1}\|\cdot\|h\|}.
+    \]
+\end{proof}
+
+\begin{thm}[Chain rule]
+    Let $V, W, X$ be normed vector spaces and assume that $f:V\rightarrow W$ is differentiable at $v\in V$ and $g: W\rightarrow X$ is differentiable
+    at $f(v)$.
+    Then $g\circ f$ is differentiable at $v$ and $\mathrm{D}(g\circ f)_v = \mathrm{D}g_{f(v)} \circ \mathrm{D}f_v$ (in $\mathcal{L}(V, X)$).
+\end{thm}
+Special case:
+If $V, W, X$ are finite dimensional vector spaces, then we can think of $\mathrm{D}g_{f(v)}$, $\mathrm{D}f_v$ as matrices and we can think of the
+composition $\mathrm{D}g_{f(v)} \circ \mathrm{D}f_v$ as matrix multiplication.
+\begin{proof}
+    Notation:
+    \[\begin{aligned}
+            \epsilon(h) &= \|h\|^{-1} \left(f(v+h) - f(v) - \mathrm{D}f_v(h)\right),\\
+            \delta(h)   &= \|k\|^{-1} \left(g(f(v)+k) - g(f(v)) - \mathrm{D}g_{f(v)}(k)\right).\\
+    \end{aligned}\]
+    We know that
+    \[
+        \lim_{h\rightarrow 0} \epsilon(h) = 0_W,\quad
+        \lim_{k\rightarrow 0} \delta(k) = 0_X.
+    \]
+    Let $k=f(v+h)-f(v)$, we have
+    \[\begin{aligned}
+            &g(f(v+h)) - g(f(v)) - \mathrm{D}g_{f(v)}\circ \mathrm{D}f_v(h)\\
+            =& g\left(f(v) + (f(v+h)-f(v))\right) - g(f(v)) - \mathrm{D}g_{f(v)}(f(v+h) - f(v)) + \mathrm{D}g_{f(v)}(f(v+h)-f(v)-\mathrm{D}f_v(h))\\
+            =&\|k\|\cdot\delta(k) + \mathrm{D}g_{f(v)}(\|h\|\cdot\epsilon(h))
+            \eqqcolon T_1+T_2.
+    \end{aligned}\]
+    Notice that $\|T_2\|\leq \|\mathrm{D}g_{f(v)}\|\cdot\|h\|\cdot\|\epsilon(h)\|$, so
+    \[
+        \lim_{h\rightarrow0}\frac{\|T_2\|}{\|h\|} = 0.
+    \]
+    On the other hand,
+    \[
+        \|k\|
+        =\left\| \left(\|h\|\epsilon(h) + \mathrm{D}f_v(h)\right)\right\|
+        \leq \|h\|\cdot\left(\|\epsilon(h)\| + \|\mathrm{D}f_v\|\right).
+    \]
+    By continuity of $f$ at $v$, $\lim_{h\rightarrow 0}\|f(v+h)-f(v)\|=0$.
+    So $\lim_{h\rightarrow0}\delta(f(v+h)-f(v)) = 0$.
+    So
+    \[
+        \lim_{h\rightarrow0}\frac{\|T_1\|}{\|h\|} \leq
+        \lim_{h\rightarrow0}(\|\epsilon(h)\| + \|\mathrm{D}f_v\|)\cdot \|\delta(k)\| = 0.
     \]
 \end{proof}
 \end{document}

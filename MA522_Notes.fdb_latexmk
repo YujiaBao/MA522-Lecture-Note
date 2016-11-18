@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1478898932 "MA522_Notes.tex" "MA522_Notes.pdf" "MA522_Notes" 1478898933
+["pdflatex"] 1479497361 "MA522_Notes.tex" "MA522_Notes.pdf" "MA522_Notes" 1479497363
   "/usr/local/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1246382020 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1246382020 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
@@ -140,9 +140,9 @@
   "/usr/local/texlive/2016/texmf-dist/web2c/texmf.cnf" 1463093894 31953 b9489e6e586f798610c60aec1f5ec548 ""
   "/usr/local/texlive/2016/texmf-var/web2c/xetex/xelatex.fmt" 1463979168 3520378 010aaf5a738348f136b1de9595fa7567 ""
   "/usr/local/texlive/2016/texmf.cnf" 1463979140 577 2938757e76f31531e65cc647e3507693 ""
-  "MA522_Notes.aux" 1478898933 84 02eaa922ffb1a30fee257c1b88acba16 ""
-  "MA522_Notes.tex" 1478898932 149259 dfac56b49fadbe01e631a2354b9cf4e7 ""
+  "MA522_Notes.aux" 1479497363 84 02eaa922ffb1a30fee257c1b88acba16 ""
+  "MA522_Notes.tex" 1479497360 154329 d940b7b1e9850d0a0d297c7b0c6ba20f ""
   (generated)
-  "MA522_Notes.aux"
   "MA522_Notes.log"
   "MA522_Notes.pdf"
+  "MA522_Notes.aux"
