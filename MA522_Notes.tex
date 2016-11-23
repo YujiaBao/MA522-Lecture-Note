@@ -3748,7 +3748,7 @@ $\mathrm{D}f$ invertible throughout $E$ and $E$ is connected does not imply that
         \|\varphi_{y_0}(x_1) - \varphi_{y_0}(x_2)\| \leq \frac{1}{2}\|x_1-x_2\|.
     \]
     Therefore,
-    $\varphi_{y_0}$ has ato most one fixed point.
+    $\varphi_{y_0}$ has at most one fixed point.
     In other words,
     $f(x) = y_0$ has at most one solution $x\in B_\delta(0)$.
     Therefore, $f$ is one-to-one on $B_\delta(0)$.
@@ -3773,6 +3773,43 @@ $\mathrm{D}f$ invertible throughout $E$ and $E$ is connected does not imply that
     Therefore, $y\in f(\overline{B_r(x_0)})$.
     Since $y$ is arbitrary, $B_{r/2}(y_0) \subseteq f(\overline{B_r(x_0)}) \subseteq f(U) = V$.
     Since $y_0$ was arbitrary, $V$ is open.
+
+    Let $g$ denote the local inverse.
+    We need to show that $g$ is continuously differentiable.
+    %Let define $x=g(y)$ and $x+h=g(y+k)$.
+    %We have
+    %\[\begin{aligned}
+    %    \frac{g(y+k)-g(y) - \mathrm{D}f(g(y))^{-1}k}{\|k\|}
+    %    &=\frac{\mathrm{D}f(x)^{-1}(\mathrm{D}f(x)h - (f(x+h)-f(x)))}{\|k\|}\\
+    %    &=\frac{-\mathrm{D}f(x)^{-1}(f(x+h)-f(x)-\mathrm{D}f(x)h)}{\|k\|}.
+    %\end{aligned}\]
+    Let $y, k$ be such that $y, y+k\in V$.
+    Then let $x\coloneqq g(y)$ and $h\coloneqq g(y+k)-x$.
+    So $f(x) = y$ and $f(x+h) = y+k$.
+    Recall, $\varphi_y(x) \coloneqq x-(f(x)-y)$ is a contraction with shrinking constant $1/2$ on $U$.
+    Since
+    $\varphi_y(x+h) - \varphi_y(x) = h-k$,
+    we have
+    \[
+        \|h-k\| \leq \frac{1}{2}\|(x+h)-x\| = \frac{1}{2}\|h\|.
+    \]
+    So $\|k\| \geq\frac{1}{2}\|h\|$.
+    Therefore,
+    \[\begin{aligned}
+        \frac{\|g(y+k) - g(y) - \mathrm{D}f(g(y))^{-1}k\|}{\|k\|}
+        &=\frac{\|x+h-x - \mathrm{D}f(x)^{-1}(f(x+h)-f(x))\|}{\|k\|}\\
+        &\leq \frac{\|\mathrm{D}f(x)^{-1}\|\cdot\|f(x+h)-f(x)-\mathrm{D}f(X)h\|}{\frac{1}{2}\|h\|}.
+    \end{aligned}\]
+    Let $\epsilon>0$.
+    Then $\exists \delta=\delta(x,\epsilon)>0$, s.t.\ $\|h\|<\delta$ implies RHS of the above inequality is less than $\epsilon$.
+    Now if $\|k\|<\frac{1}{2}\delta$, then $\|h\|<\delta$.
+    So the LHS of the above inequality is less than $\epsilon$.
+    So $g$ is differentiable at $y$ and $\mathrm{D}g(y)\ = \mathrm{D}f(g(y))^{-1}$.
+
+    Finally, we need to show that $g$ is continuously differentiable.
+    We know that $g$ is continuous since it is differentiable.
+    $\mathrm{D}f$ is continuous by assumption and we proved $A\mapsto A^{-1}$ is continuous.
+    So $\mathrm{D}g$, the composition of these maps is continuous.
 \end{proof}
 \begin{eg}
     $f(x,y) = (e^x \cos y, e^x \sin y)$, for $(x,y)\in\mathbb{R}^2$.
@@ -3798,5 +3835,65 @@ $\mathrm{D}f$ invertible throughout $E$ and $E$ is connected does not imply that
     Since $x\in W$ was arbitrary, $f(W)$ is open.
 \end{proof}
 
+\begin{thm}[Implicit function theorem]
+    Let $E^{open}\subseteq \mathbb{R}^n\times \mathbb{R}^m$ and $F:E\rightarrow\mathbb{R}^m$ continuously differentiable.
+    Assume $F(a,b) = 0$ for some $(a,b)\in E$ and that
+    \[
+        \mathrm{D}_y F(a,b)\coloneqq
+        \begin{bmatrix}
+            \frac{\partial F_1}{\partial y_1}(a,b)&\cdots&\frac{\partial F_1}{\partial y_n}(a,b)\\
+            \vdots&&\vdots\\
+            \frac{\partial F_m}{\partial y_1}(a,b)&\cdots&\frac{\partial F_m}{\partial y_n}(a,b)\\
+        \end{bmatrix}
+    \]
+    is nonsingular.
+    Then there exists neighbourhoods $U$ of $a$ and $V$ of $b$ and a function $f:U\rightarrow V$, s.t.\ $\forall x\in U, y\in V$, $F(x,y) = 0$ if and
+    only if $y=f(x)$.
+    Moreover, $f$ is continuously differentiable on $U$ and
+    \[
+        \mathrm{D}f(x) = -\mathrm{D}_yF(x,f(x))^{-1}\mathrm{D}_xF(x,f(x)).
+    \]
+\end{thm}
+\begin{proof}
+    The idea is to use the inverse function theorem.
+    Define $G(x,y) \coloneqq (x,F(x,y))$.
+    Then $G$ is continuously differentiable on $E$ and
+    \[
+        \mathrm{D}G(a,b)=\begin{bmatrix}
+            I_n & 0\\
+            \mathrm{D}_xF(a,b)&\mathrm{D}_y F(a,b)\\
+        \end{bmatrix}
+    \]
+    is nonsingular.
+    So there exist neighbourhoods $A$ of $(a,b)$ and $B$ of $G(a,b)$ such that 
+    $G(A) = B$ and a local inverse $H:B\rightarrow A$.
+    Then $H$ must take the form
+    $H(x,z) = (x,h(x,z))$ (we use $h$ to denote the second element of $H$).
+    Let's pick $\epsilon>0$, s.t. $B_\epsilon(a)\times B_\epsilon(b)\subseteq A$.
+    Then $G(B_\epsilon(a)\times B_\epsilon(b))$ is open, contains $(a,0)$ (which is $G(a,b)$).
+    So $\exists \delta>0$, s.t.\ $B_\delta(a)\times\{0\}\subseteq G(B_\epsilon(a)\times B_\epsilon(b))$.
+    Notice that $B_\delta(a)\subseteq B_\epsilon(a)$.
+    Now define $f:B_\delta(a)\rightarrow B_\epsilon(b)$ by $f(x)\coloneqq h(x,0)$ (this is okay since $(x,0)\subseteq B$ and $G(A)=B$).
+    Let $U=B_\delta (a)$, $V=B_\epsilon(b)$.
+    If $x\in U$, $y\in V$, then $(x,y)\in B_\epsilon(a)\times B_\epsilon(b)\subseteq A$.
+    So 
+    \[
+        F(x,y) = 0\Longleftrightarrow G(x,y) = (x,0) \Longleftrightarrow y=h(x,0)=f(x).
+    \]
+    $f$ is continuously differentiable because $H$ is.
+    Formula for $\mathrm{D}f$:
+    \[
+        F(x,f(x)) \equiv 0.
+    \]
+    By the chain rule, we have
+    \[
+        \mathrm{D}_x F(x,f(x)) + \mathrm{D}_y F(x,f(x))\mathrm{D}f(x) = 0.
+    \]
+\end{proof}
+
+\begin{eg}[an application of the implict function theorem]
+    The zero set is $\{(x,y):F(x,y) = 0\}$.
+    The theorem tells us that it can be written (locally) as $\{(x,f(x)):x\in U\subseteq \mathbb{R}^n\}$.
+\end{eg}
 \end{document}
 
