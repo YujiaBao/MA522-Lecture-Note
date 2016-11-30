@@ -3366,7 +3366,7 @@ For convention, we write $T(x)$ as $Tx$.
     \]
     We call $L_v$ the total derivative of $f$ at $v$ and write
     \[
-        Df_v = Df(v) = L_v \in \mathcal{L}(V,W).
+        \mathrm{D}f_v = \mathrm{D}f(v) = L_v \in \mathcal{L}(V,W).
     \]
 \end{defn}
 
@@ -3418,13 +3418,14 @@ For convention, we write $T(x)$ as $Tx$.
 \begin{eg}
     Let $V = \mathbb{R}^k$, $W=\mathbb{R}$.
     Let $f(x) = \|x\|_2^2 = \sum_{j=1}^k x_j^2$.
-    Then $\forall v\in\mathbb{R}^k$, $f$ is differentiable at $v$ and $Df_v(h) = 2v\cdot h$.
+    Then $\forall v\in\mathbb{R}^k$, $f$ is differentiable at $v$ and $\mathrm{D}f_v(h) = 2v^Th$.
+    % Question
     In matrix form, 
-    $Df_v=[2v_1, 2v_2', \ldots, 2v_k]$.
+    $\mathrm{D}f_v=[2v_1, 2v_2, \ldots, 2v_k]$.
 \end{eg}
 \begin{proof}
     \[
-        \lim_{h\rightarrow 0}\frac{\|f(v+h)-f(v)-2v\cdot h\|}{\|h\|} = \lim_{h\rightarrow 0}\frac{\|h\|^2}{\|h\|} = 0.
+        \lim_{h\rightarrow 0}\frac{\|f(v+h)-f(v)-2v^Th\|}{\|h\|} = \lim_{h\rightarrow 0}\frac{\|h\|^2}{\|h\|} = 0.
     \]
 \end{proof}
 
@@ -3438,9 +3439,9 @@ For convention, we write $T(x)$ as $Tx$.
     Let $e\in V$ with $\|e\|=1$.
     By definition,
     \[
-        0=\lim_{h\in\mathbb{R}, h\rightarrow0}\frac{\left\|f(0+he)-f(0)-L_v(he)\right\|}{\|h\|}
-        =\lim_{h\in\mathbb{R}, h\rightarrow0}\frac{\left\| |h|-hL_v(e)\right\|}{\|h\|}
-        =\lim_{h\in\mathbb{R}, h\rightarrow0}\left|1-\frac{h}{|h|}L_v(E)\right|.
+        0=\lim_{h\in\mathbb{R}, h\rightarrow0}\frac{|f(0+he)-f(0)-L_v(he)|}{|h|}
+        =\lim_{h\in\mathbb{R}, h\rightarrow0}\frac{| |h|-hL_v(e)|}{|h|}
+        =\lim_{h\in\mathbb{R}, h\rightarrow0}\left|1-\frac{h}{|h|}L_v(e)\right|.
     \]
     If $L_v(e)=0$, this is false because the limit is $1$.
     If $L_v(e)\neq 0$, this is false because the left and right limits disagree.
@@ -3448,24 +3449,24 @@ For convention, we write $T(x)$ as $Tx$.
 
 \begin{eg}
     Let $V=\mathcal{C}^0([a,b])$, $W=\mathbb{R}$.
-    Let $F(g) = \int_a^b (g(x))^2\,\mathrm{d}x$ is differentiable at $g$, $\forall g\in \mathcal{C}^0([a,b])$ and
-    $DF_g(f)=\int_a^b2f(x)g(x)\,\mathrm{d}x$.
+    Then $F(g) = \int_a^b (g(x))^2\,\mathrm{d}x$ is differentiable at $g$, $\forall g\in \mathcal{C}^0([a,b])$ and
+    $\mathrm{D}F_g(f)=\int_a^b2f(x)g(x)\,\mathrm{d}x$.
 \end{eg}
 \begin{proof}
     \[
-        \|F(g+h)-F(g)-DF_v(h)\| = \left\| \int_a^b h^2(x)\,\mathrm{d}x\right\| \leq (b-a) \|h\|^2
+        \|F(g+h)-F(g)-\mathrm{D}F_v(h)\| = \left\| \int_a^b h^2(x)\,\mathrm{d}x\right\| \leq (b-a) \|h\|^2 = o(\|h\|).
     \]
 \end{proof}
 
 \begin{eg}
     Let $X$, $Y$ be Banach spaces.
     Define $V=\mathcal{L}(X,Y)$, $W=\mathcal{L}(Y, X)$ and $E=\Omega(X,Y)$ (the set of all bijections from $X$ to $Y$),
-    $F(T) = T^{-1}$, $T\in \Omega(X,Y)$.
+    $F(T) = T^{-1}$ for $T\in \Omega(X,Y)$.
     Then $F$ is differentiable at each point of $E$ and
     \[
-        DF_T(h) = -T^{-1}hT^{-1}
+        \mathrm{D}F_T(h) = -T^{-1}hT^{-1}
     \]
-    Remember that $DF_T\in\mathcal{L}(V,W)$, $h\in\mathcal{L}(X,Y)$ and $DF_T(h)\in\mathcal{L}(Y,X)$.
+    (Remember that $\mathrm{D}F_T\in\mathcal{L}(V,W)$, $h\in\mathcal{L}(X,Y)$ and $\mathrm{D}F_T(h)\in\mathcal{L}(Y,X)$.)
 \end{eg}
 \begin{proof}
     Let $T\in\Omega(X,Y)$.
@@ -3476,22 +3477,22 @@ For convention, we write $T(x)$ as $Tx$.
     Now
     \[
         F(T+h) - F(T) + T^{-1}hT^{-1}
-        = \sum_{n=2}^\infty (-1)^n(T^{-1}h)^nT^{-1}
-        = \mathcal{O}(\|h\|^2),
+        = \sum_{n=2}^\infty (-1)^n(T^{-1}h)^nT^{-1},
     \]
     since $F(t)$ cancels out the zeroth term and $T^{-1}hT^{-1}$ cancels out the first term.
     So
     \[
         \|F(T+h) - F(T) + T^{-1}hT^{-1}\|
         \leq \frac{\|T^{-1}h\|^2\cdot\|T^{-1}\|}{1-\|T^{-1}h\|}
-        \leq \frac{\|T^{-1}\|^3\cdot\|h\|^2}{1-\|T^{-1}\|\cdot\|h\|}.
+        \leq \frac{\|T^{-1}\|^3\cdot\|h\|^2}{1-\|T^{-1}\|\cdot\|h\|}
+        = \mathcal{O}(\|h\|^2).
     \]
 \end{proof}
 
 \begin{thm}[Chain rule]
     Let $V, W, X$ be normed vector spaces and assume that $f:V\rightarrow W$ is differentiable at $v\in V$ and $g: W\rightarrow X$ is differentiable
     at $f(v)$.
-    Then $g\circ f$ is differentiable at $v$ and $\mathrm{D}(g\circ f)_v = \mathrm{D}g_{f(v)} \circ \mathrm{D}f_v$ (in $\mathcal{L}(V, X)$).
+    Then $g\circ f$ is differentiable at $v$ and $\mathrm{D}(g\circ f)_v = \mathrm{D}g_{f(v)} \circ \mathrm{D}f_v\in \mathcal{L}(V, X)$).
 \end{thm}
 Special case:
 If $V, W, X$ are finite dimensional vector spaces, then we can think of $\mathrm{D}g_{f(v)}$, $\mathrm{D}f_v$ as matrices and we can think of the
@@ -3500,7 +3501,7 @@ composition $\mathrm{D}g_{f(v)} \circ \mathrm{D}f_v$ as matrix multiplication.
     Notation:
     \[\begin{aligned}
             \epsilon(h) &= \|h\|^{-1} \left(f(v+h) - f(v) - \mathrm{D}f_v(h)\right),\\
-            \delta(h)   &= \|k\|^{-1} \left(g(f(v)+k) - g(f(v)) - \mathrm{D}g_{f(v)}(k)\right).\\
+            \delta(k)   &= \|k\|^{-1} \left(g(f(v)+k) - g(f(v)) - \mathrm{D}g_{f(v)}(k)\right).\\
     \end{aligned}\]
     We know that
     \[
@@ -3535,10 +3536,10 @@ composition $\mathrm{D}g_{f(v)} \circ \mathrm{D}f_v$ as matrix multiplication.
 
 Henceforth, $V=\mathbb{R}^k$, $W=\mathbb{R}^m$, all norms are Euclidean.
 \begin{prop}
-    If $f: \mathbb{R}^n \rightarrow \mathbb{R}^n$ is differentiable at $x_0$, then all first order partial derivatives of $f$ at $x_0$ exist and
+    If $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$ is differentiable at $x_0$, then all first order partial derivatives of $f$ at $x_0$ exist and
     moreover,
     \[
-        \mathrm{D}f(x_0) = 
+        \mathrm{D}f_{x_0} = 
         \begin{bmatrix}
             \frac{\partial f_1}{\partial x_1}(x_0) & \cdots &\frac{\partial f_1}{\partial x_n}(x_0)\\
                 \vdots&\ddots&\vdots\\
@@ -3549,14 +3550,14 @@ Henceforth, $V=\mathbb{R}^k$, $W=\mathbb{R}^m$, all norms are Euclidean.
 \begin{proof}
     Notice that
     \[
-        \lim_{h\rightarrow 0, h\in\mathbb{R}} \frac{\|f(x_0+he_j) - f(x_0) - Df(x_0)he_j\|}{\|h\|} = 0.
+        \lim_{h\rightarrow 0, h\in\mathbb{R}} \frac{\|f(x_0+he_j) - f(x_0) - \mathrm{D}f_{x_0}(he_j)\|}{\|h\|} = 0.
     \]
     Also we have
     \[
-        \lim_{h\rightarrow 0, h\in\mathbb{R}} \frac{\|f(x_0+he_j) - f(x_0) - Df(x_0)he_j\|}{\|h\|} 
-        = \left\|\frac{\partial f}{\partial x_j}(x_0) - Df(x_0)e_j\right\|.
+        \lim_{h\rightarrow 0, h\in\mathbb{R}} \frac{\|f(x_0+he_j) - f(x_0) - \mathrm{D}f_{x_0}(he_j)\|}{\|h\|} 
+        = \left\|\frac{\partial f}{\partial x_j}(x_0) - \mathrm{D}f(x_0)e_j\right\|.
     \]
-    Since $\frac{\partial f}{\partial x_j}(x_0)$ is the $j$th column of the Jacobian matrix and $Df(x_0)e_j$ is the $j$th column of total derivative.
+    Since $\frac{\partial f}{\partial x_j}(x_0)$ is the $j$th column of the Jacobian matrix and $\mathrm{D}f_{x_0}(e_j)$ is the $j$th column of total derivative.
     So we are done.
 \end{proof}
 
@@ -3571,7 +3572,7 @@ How can we generalize this result to $f: E\rightarrow\mathbb{R}^m$, where $E\sub
 First, we consider the case $n\geq 1$, $m=1$.
 
 \begin{defn}
-    The set $E\subseteq V^{\text{vector space}}$ is convex if $\forall x,y\in E$, and $0\leq t\leq 1$, $(1-t)x+ty\in E$.
+    Let $V$ be a vector space. The set $E\subseteq V$ is convex if $\forall x,y\in E$, and $0\leq t\leq 1$, $(1-t)x+ty\in E$.
     In other words, the line segment connecting $x$ and $y$ is in $E$.
 \end{defn}
 
@@ -3581,8 +3582,9 @@ First, we consider the case $n\geq 1$, $m=1$.
     Let $x, y\in E$.
     Then $\exists t\in[0,1]$, s.t.\ 
     \[
-        f(y) - f(x) = \mathrm{D}f((1-t)x+ty)(y-x).
+        f(y) - f(x) = \mathrm{D}f((1-t)x+ty))(y-x).
     \]
+    Note, here $\mathrm{D}f((1-t)x+ty))$ is an $1\times n$ matrix and $y-x$ is an $n\times 1$ matrix.
 \end{thm}
 \begin{proof}
     Define $g(t) = f((1-t)x+ty)$.
@@ -3612,14 +3614,15 @@ The direct analogue of mean value theorem is false.
 \end{thm}
 \begin{proof}
     Fix $x_0, y_0\in E$.
-    Define $v\coloneqq f(y_0) - f(x_0)$, $g(x)\coloneqq \langle v, f(x)\rangle$.
+    Define $v\coloneqq f(y_0) - f(x_0)$ and $g(x)\coloneqq v^T f(x)$.
     By the previous theorem, $\exists t\in[0,1]$, s.t.\
     \[
-        \|v\|\cdot\|f(x_0) - f(y_0)\| = g(y_0) - g(x_0) = \langle v,\mathrm{D}f((1-t)x_0+ty_0)(y_0-x_0)\rangle \leq \|v\|\cdot M\cdot\|y_0-x_0\|.
+        \|v\|\cdot\|f(x_0) - f(y_0)\| = g(y_0) - g(x_0) = v^T\mathrm{D}f((1-t)x_0+ty_0)(y_0-x_0) \leq \|v\|\cdot M\cdot\|y_0-x_0\|.
     \]
 \end{proof}
 
 Both theorems are false if $E$ is not convex.
+%question
 \begin{eg}
     Define
     \[
