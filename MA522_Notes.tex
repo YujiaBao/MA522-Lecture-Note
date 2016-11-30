@@ -3235,11 +3235,7 @@ For convention, we write $T(x)$ as $Tx$.
 \begin{proof}
     It suffices to show that $T^{-1}$ is continuous.
     Let $U\subseteq X$ be an open set.
-    Then
-    \[
-        \text{preImage}(T^{-1}) = T(U)
-    \]
-    is open.
+    Then the preimage of $U$ with respect to $T^{-1}$, which is $T(U)$, is open (since $T$ is an open map by the open mapping theorem).
     So $T^{-1}$ is continuous.
 \end{proof}
 
@@ -3281,15 +3277,17 @@ For convention, we write $T(x)$ as $Tx$.
 \begin{thm}
     Let $X$ and $Y$ be Banach spaces and let $\Omega(X,Y)$ denote the set of
     bijections in $\mathcal{L}(X,Y)$.
-    Then $\Omega(X,Y)$ is open subset of $\mathcal{L}(X,Y)$ and the inversion map
+    Then $\Omega(X,Y)$ is an open subset of $\mathcal{L}(X,Y)$ and the inversion map
     $A\mapsto A^{-1}$ is a continuous bijection of $\Omega(X,Y)$ onto
     $\Omega(Y,X)$
 \end{thm}
 \begin{proof}
     By corollary of the open mapping theorem, we know $A\in\Omega(X,Y)$ implies
     $A^{-1}\in \mathcal{L}(Y,X)$.
-    Thus $A\mapsto A^{-1}$ is a bijection.
-    Remains to prove that $\Omega(X,Y)$ is open and $A\mapsto A^{-1}$ is
+    Since $A$ is a bijection, $A^{-1}$ is also a bijection.
+    So $A^{-1}\in\Omega(Y,X)$.
+    Thus the inversion map $A\mapsto A^{-1}$ is a bijection.
+    It remains to prove that $\Omega(X,Y)$ is open and $A\mapsto A^{-1}$ is
     continuous.
     \begin{description}
         \item[Lemma: ]
@@ -3333,7 +3331,7 @@ For convention, we write $T(x)$ as $Tx$.
                         &=(I-A^{-1}B)^0\\
                         &=I.
                 \end{aligned}\]
-                Note the first equality is due to the continuity of $B$.
+                Note the first equality is due to the continuity (or equivalently, boundedness) of $B$.
                 \begin{description}
                     \item[Aside: ]
                         $S_N=\sum_{n=0}^N(I-A^{-1}B)$.
@@ -3347,7 +3345,8 @@ For convention, we write $T(x)$ as $Tx$.
                 Then finally, we have
                 \[
                     \begin{aligned}
-                        \|\sum_{n=1}^\infty (I-A^{-1}B)^nA^{-1}\|
+                        \|B^{-1}-A^{-1}\|_{Y\rightarrow X}
+                        &=\left\|\sum_{n=1}^\infty (I-A^{-1}B)^nA^{-1}\right\|\\
                         &\leq \sum_{n=1}^\infty \|I-A^{-1}B\|^n\cdot\|A^{-1}\|\\
                         &\leq \sum_{n=1}^\infty \|A^{-1}\|^{n+1}\cdot\|A-B\|^n\\
                         &=\frac{\|A^{-1}\|^2\cdot\|A-B\|}{1-\|A^{-1}\|\cdot\|A-B\|}.
@@ -3359,7 +3358,7 @@ For convention, we write $T(x)$ as $Tx$.
 
 \subsection*{Multivariable Calculus}
 \begin{defn}
-    Let $(V, \|\cdot\|_C)$, $(W, \|\cdot\|_W)$ be normed vector spaces.
+    Let $(V, \|\cdot\|_V)$, $(W, \|\cdot\|_W)$ be normed vector spaces.
     Let $E$ be an open subset of $V$ and $f:E\rightarrow W$.
     We say $f$ is differentiable at $v\in E$ if $\exists L_v\in \mathcal{L}(V,W)$ s.t.
     \[
@@ -3378,13 +3377,20 @@ For convention, we write $T(x)$ as $Tx$.
     If $L_v$ and $L_v'$ both satisfies the equation above.
     Then by triangle inequality, we have
     \[
-        \lim_{h\rightarrow 0}\frac{\|L_v(h)-L_v'(h)\|}{\|h\|} = 0.
+        \lim_{h\rightarrow 0}\frac{\|L_v(h)-L_v'(h)\|_W}{\|h\|_V} = 0.
     \]
     So $\forall \epsilon>0$, $\exists \delta>0$, s.t.\ $\|h\|<\delta$ implies
     \[
         \frac{\|L_v(h)-L_v'(h)\|}{\|h\|}<\epsilon.
     \]
-    This implies (HW) $\|L_v-L_v'\|<\epsilon$.
+    %question
+    Since
+    \[
+        \frac{\|L_v(h)-L_v'(h)\|}{\|h\|}
+        = \frac{\|\|h\|\cdot( L_v(h/\|h\|) - L_v'(h/\|h\|))\|}{\|h\|}
+        =\|L_v-L_v'\|,
+    \]
+    we have $\|L_v-L_v'\|<\epsilon$.
     Since $\epsilon$ is arbitrary, $L_v=L_v'$.
 \end{proof}
 
@@ -3399,6 +3405,7 @@ For convention, we write $T(x)$ as $Tx$.
         \leq o(\|h\|)+\|L_v\|\cdot\|h\|
         \rightarrow 0.
     \]
+    %Question Why the last leq is not equal?
 \end{proof}
 
 \begin{eg}
@@ -3895,5 +3902,166 @@ $\mathrm{D}f$ invertible throughout $E$ and $E$ is connected does not imply that
     The zero set is $\{(x,y):F(x,y) = 0\}$.
     The theorem tells us that it can be written (locally) as $\{(x,f(x)):x\in U\subseteq \mathbb{R}^n\}$.
 \end{eg}
+
+\begin{defn}
+    $X, Y$ are finite dimensional vector spaces.
+    Let $T\in\mathcal{L}(X,Y)$.
+    Define the null space as
+    \[
+        \mathcal{N}(T)\coloneqq\{x\in X:Tx=0\}.
+    \]
+    Define the range as
+    \[
+        \mathcal{R}(T)\coloneqq TX
+    \]
+    which is a subspace of $Y$.
+    Define the rank of $T$
+    \[
+        \text{rank}(T) = \text{dim} \mathcal{R}(T) = \text{dim} X - \text{dim}\mathcal{N}(T).
+    \]
+    If $X=\mathcal{R}^n$, $y=\mathcal{R}^m$, $T$ is then associate to a matrix $A$.
+    In this case
+    \[
+        \text{rank}(T) = \text{dim}(\text{span of columns of }A) = \text{dim}(\text{span of rows of }A).
+    \]
+    If (in the Euclidein case) rank of $T = r\leq \min(m,n)$.
+    Then by elementary row and column operations, we can transform $A$ into
+    \[
+        \begin{bmatrix}
+            I_r & 0\\
+            0 & 0\\
+        \end{bmatrix}.
+    \]
+    In other words, $\exists B\in GL(m)$ and $C\in GL(n)$, s.t.
+    \[
+        B\cdot A\cdot C=
+        \begin{bmatrix}
+            I_r & 0\\
+            0   & 0\\
+        \end{bmatrix}.
+    \]
+    Here $GL(m)$ stands for invertible $m\times m$ matrices.
+\end{defn}
+The idea behind rank theorem is a nonlinear version of the above.
+
+\begin{prop}
+    Let $X,Y$ be finite dimensional vector spaces.
+    $A\mapsto \text{rank}(A)$ is a lower semi continuous map from $\mathcal{L}(X,Y)$ into $\{0,1,...,\min\{\text{dim}X,\text{dim}Y\}\}$,
+    i.e.
+    \[
+        \inf \lim_{T\rightarrow A} \text{rank}(T)\geq \text{rank}(A).
+    \]
+    i.e. $\exists \delta > 0$, s.t.\ $\|T-A\|<\delta$ implies $\text{rank}(T)\geq \text{rank}A$
+\end{prop}
+    The limit on the LHS may not exist, so we use $\inf\lim$.
+\begin{proof}
+    Suppose $\text{dim}X=n$ and $\text{rank}A=k$.
+    Then $A$ have a $k\times k$ minor (i.e. pick $k$ rows and $k$ columns of $A$) with nonzero determinant.
+    Determinant of a given minor is a continuous map, so there exists a neighbourhood $U$ of $A$ s.t.\ $\forall T\in U$, some $k\times k$ minor has
+    nonzero determinant.
+    So the rank is $\geq k$.
+\end{proof}
+
+\begin{corollary}
+    Let $E$ be an open subset of $\mathbb{R}^n$ and $f:E\rightarrow \mathbb{R}^m$ is continuously differentiable on $E$.
+    If $a\in E$ and $\text{rank}(\mathrm{D}f(a)) = \min\{m,n\}$, then there exists a neighbourhood $U$ of $a$, s.t.
+    $\mathrm{D}f(x)$ has rank $\min\{m,n\}$ throughout $U$.
+\end{corollary}
+
+\begin{thm}[Rank Theorem]
+    Let $E$ be an open subset of $\mathbb{R}^n$ and $f:E\rightarrow\mathbb{R}^m$ be continuously differentiable on $E$.
+    \begin{enumerate}
+        \item
+        Assume that $\mathrm{D}f(x)$ has rank $r$ for all $x\in E$.
+        Then $\forall a\in E$, $\exists$ open sets $U, V$ with $a\in U$, a continuously differentiable bijection $H:V\rightarrow U$ with $\mathrm{D}H$
+        nonsingular on $V$ and a linear isomorphism $G\in GL(\mathbb{R}^m)$, s.t.
+        \[
+            G\circ f\circ H(x) = (x_1,\ldots,x_r,0,\ldots,0)
+            +(0,\varphi(x_1,...,x_r))
+        \]
+        with $\mathrm{D}\varphi(H(a)) = 0$.
+        Here $\varphi$ maps from $\mathbb{R}^{r}$ to $\mathbb{R}^{m-r}$.
+
+        \item
+            If $\mathrm{D}f(a)$ has rank $r$, then $\exists$ open sets $U, V$ and bijection $H:V\rightarrow U$ (continuously differentiable with
+            continuously differentiable inverse) and an isomorphism $G$ such that
+            \[
+                G\circ f\circ H(x) = (x_1,...,x_r,0,\ldots,0) + (0,\psi(x_1,...,x_n)).
+            \]
+            with $D\psi(0) = 0$.
+            Here $\psi$ maps from $\mathbb{R}^{n}$ to $\mathbb{R}^{m-r}$.
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    \begin{enumerate}
+        \item
+            If $r=0$.
+            $f$ is a constant on each connected component of $E$.
+            We are done.
+
+            Assume $r>0$.
+            Replacing $f$ with $f(x+a)-f(a)$, we may assume $a=0$ and $f(a) = 0$.
+            Replacing $f$ with $A\circ f\circ B$ for appropriately chosen $A\in GL(m)$, $B\in GL(n)$, we may assume
+            \[
+                \mathrm{D}f(0) = \begin{bmatrix}
+                    I_r&0\\
+                    0&0
+                \end{bmatrix}.
+            \]
+            Define an auxillary function
+            \[
+                F(x)\coloneqq (f_1(x), \ldots, f_r(x),x_{r+1},\ldots,x_n).
+            \]
+            Then $\mathrm{D}F(0) = I_n$ and $F(0) = 0$.
+            So $\exists$ neighbourhoods $U, V$ of $0$, s.t.\ $F$ is a bijection of $U$ onto $V$ and $H\coloneqq (F|_U)^{-1}$ is continuously
+            differentiable on $V$.
+            Now look at $f\circ H$,
+            \[
+                f\circ H(y) = (y_1,\ldots,y_r,\psi(y)),
+            \]
+            Now we need to show that $\psi$ is independent of $y_{r+1},...,y_n$.
+            Decompose $y$ as $(u, v)$ where $u\in\mathbb{R}^r$ and $v\in\mathbb{R}^{n-r}$.
+            \begin{description}
+                \item[Claim: ]$\mathrm{D}_r\psi \equiv 0$.\\
+                    \[
+                        \mathrm{D}(f\circ H) = \begin{bmatrix}
+                            I_r&0\\
+                            \mathrm{D}_u\psi&\mathrm{D}_v\psi\\
+                        \end{bmatrix}
+                    \]
+                    has rank equal to $r+\text{rank}\mathrm{D}_v(\psi)$.
+                    But $\mathrm{D}(f\circ H) = (\mathrm{D}f)\circ H$.
+                    $\mathrm{D}H$ has rank $r$, because $\mathrm{D}f$ has rank $r$ and $\mathrm{D}H$ is invertible.
+                    So $\mathrm{D}_v\psi$ has rank $0$, i.e.
+                    $\mathrm{D}_v\psi\equiv 0$.
+            \end{description}
+            Shrinking $V$, we may assume $V$ is convex.
+            Then the claim implies $\psi$ is independent of $V$, i.e.
+            \[
+                \psi(u,v) = \varphi(u),
+            \]
+            for some function $\varphi$ on $\pi(v)\coloneqq\{u:\exists v, s.t. (u,v)\in V\}$
+        \item By linear algebra, $\exists G\in GL(m)$, $H\in GL(n)$, s.t.\ 
+            \[
+                G\cdot \mathrm{D}f(a)\cdot H = \begin{bmatrix}
+                    I_r&0\\
+                    0&0\\
+               \end{bmatrix}.
+           \]
+           THus $G\circ f\circ H$ has the desired properties.
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+    In case 1 of the rank theorem, by allowing $G$ to be continuously differentiable with continuously differentiable inverse, we can have
+    $G\circ f\circ H(x) = (x_1,\ldots,x_r,0,\ldots,0)$.
+\end{corollary}
+\begin{proof}
+    \[
+        \text{new} G(y) = \text{old}G(y) - (0,\varphi(y_1,...,y_r)).
+    \]
+\end{proof}
+
+
 \end{document}
 
