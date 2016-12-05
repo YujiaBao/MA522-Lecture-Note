@@ -30,6 +30,7 @@
 \newtheorem*{corollary}{Corollary}
 \theoremstyle{definition}
 \newtheorem*{defn}{Definition}
+\newtheorem*{notation}{Notation}
 \newtheorem*{eg}{Example}
 \newtheorem*{ex}{Exercise}
 \newtheorem*{Remarks}{Remarks}
@@ -2532,7 +2533,7 @@ We want a simpler characterization of totally boundedness.
                         &\frac{1}{f'(g(y))},&& t=g(y).\\
                     \end{aligned}
             \right.\]
-            Then $\frac{1}{\varphi}$ is continuous on $I$ and $\frac{1}{\varphi(g(y))} = f'(g(y))\neq 0.$ 
+            Then $\frac{1}{\varphi}$ is continuous on $I$ and $\frac{1}{\varphi(g(y))} = f'(g(y))\neq 0$. 
             So $\varphi$ is continuous on a nerighbourhood of $g(y)$.
             So $\varphi\circ g$ is continuous at $y$, i.e.
             \[\lim_{h\rightarrow0}\frac{g(y+h)-g(y)}{f(g(y+h)) - f(g(y))} = \lim_{h\rightarrow 0}\varphi(g(y+h)) = \varphi(g(y)) = \frac{1}{f'(g(y))}.\]
@@ -2880,7 +2881,7 @@ This is saying $\log$ goes to infinity very slow.
     |a_nb_n|.\]
 \end{prop}
 \begin{proof}
-    By Holders inequality, RHS $\leq$ LHS.
+    By Holders inequality, RHS $\leq$ LHS\@.
     If $\{a_n\}\in l^p$, take $b_n = |a_n|^{p-1}$.
     Then
     \[\begin{aligned}
@@ -3013,7 +3014,7 @@ This is saying $\log$ goes to infinity very slow.
 \begin{defn}
     Let $T: X^{\text{normed v.s.}}\rightarrow Y^{\text{normed v.s.}}$ be linear.
     We say $T$ is a bounded linear operator (or $T$ is bounded) if $\exists C$, s.t. $\forall x\in X$,
-    $\|T(x)\|_Y\leq C\cdot\|x\|_X.$
+    $\|T(x)\|_Y\leq C\cdot\|x\|_X$.
 \end{defn}
 
 \begin{eg}
@@ -3444,7 +3445,7 @@ For convention, we write $T(x)$ as $Tx$.
         =\lim_{h\in\mathbb{R}, h\rightarrow0}\left|1-\frac{h}{|h|}L_v(e)\right|.
     \]
     If $L_v(e)=0$, this is false because the limit is $1$.
-    If $L_v(e)\neq 0$, this is false because the left and right limits disagree.
+    If $L_v(e)\neq 0$, this is false because the left and right limits of the RHS disagree.
 \end{proof}
 
 \begin{eg}
@@ -3649,7 +3650,7 @@ Both theorems are false if $E$ is not convex.
     Let $F\coloneqq \{x\in E: f(x) = f(x_0)\}$.
     Then $F$ is closed (relative to $E$) and $f$ is continuous.
     Let $y_0\in F$.
-    Then $\exists r>0$, s.t. $B_r(y_0)\subseteq E$.
+    Then $\exists r>0$, s.t. $B_r(y_0)\subseteq E$. %Question, why exist?
     Since $B_r(y_0)$ is convex, by the previous theorem, $f(x) - f(y_0) = 0$, $\forall x\in B_r(y_0)$.
     So $B_r(y_0)\in F$.
     Thus $F$ is open.
@@ -3677,7 +3678,7 @@ Answer: No.
 
 \begin{defn}
     Let $E^{\text{open}}\subseteq \mathbb{R}^n$ and $f : E\rightarrow \mathbb{R}^m$.
-    Say $f$ is continuously differentiable on $E$ if $f$ is differentiable on $E$ and $\mathrm{D}f$ is continuous on $E$ (i.e. as a map from $E$ into
+    Say $f$ is continuously differentiable on $E$ if $f$ is differentiable on $E$ and $\mathrm{D}f$ is continuous on $E$ (i.e.\ as a map from $E$ into
     $\mathcal{L}(l_n^2, l_m^2)$).
 \end{defn}
 \begin{defn}
@@ -3692,7 +3693,7 @@ Answer: No.
 \end{defn}
 
 \begin{thm}
-    Let $E^{\text{open}, \neq\emptyset}\subseteq\mathbb{R}^n$ and $f: E\rightarrow\mathbb{R}^m$.
+    Let $E$ be an nonempty open subspace of $\mathbb{R}^n$ and $f: E\rightarrow\mathbb{R}^m$.
     Then $f$ is continuously differentiable on $E$ if and  only if all first order partial derivatives of $f$ exist and are continuous on $E$.
 \end{thm}
 \begin{proof}
@@ -3716,7 +3717,7 @@ Answer: No.
             \]
             By the mean value theorem for one variable, for each $j$, there exists $\theta_j\in[0,1]$, such that
             \[
-                f(x_0 + k_j) - f(x_0 + k_{j-1}) = \frac{\partial f}{\partial x_j} (x_0 + k_{j-1} + \theta_i h_j e_j).
+                f(x_0 + k_j) - f(x_0 + k_{j-1}) = \left(\frac{\partial f}{\partial x_j} (x_0 + k_{j-1} + \theta_i h_j e_j)\right)h_j.
             \]
             Then
             \[
@@ -3808,7 +3809,7 @@ $\mathrm{D}f$ invertible throughout $E$ and $E$ is connected does not imply that
     \[\begin{aligned}
         \frac{\|g(y+k) - g(y) - \mathrm{D}f(g(y))^{-1}k\|}{\|k\|}
         &=\frac{\|x+h-x - \mathrm{D}f(x)^{-1}(f(x+h)-f(x))\|}{\|k\|}\\
-        &\leq \frac{\|\mathrm{D}f(x)^{-1}\|\cdot\|f(x+h)-f(x)-\mathrm{D}f(X)h\|}{\frac{1}{2}\|h\|}.
+        &\leq \frac{\|\mathrm{D}f(x)^{-1}\|\cdot\|f(x+h)-f(x)-\mathrm{D}f(x)h\|}{\frac{1}{2}\|h\|}.
     \end{aligned}\]
     Let $\epsilon>0$.
     Then $\exists \delta=\delta(x,\epsilon)>0$, s.t.\ $\|h\|<\delta$ implies RHS of the above inequality is less than $\epsilon$.
@@ -3828,7 +3829,7 @@ $\mathrm{D}f$ invertible throughout $E$ and $E$ is connected does not imply that
 
 \begin{thm}
     Let $E$ be an open subset of $\mathbb{R}^n$.
-    Let $f:E\rightarrow\mathbb{R}^n$ be continuously differentiable and $\mathrm{D}f(x)$ is invertible $\forall x\in E$.
+    If $f:E\rightarrow\mathbb{R}^n$ is continuously differentiable and $\mathrm{D}f(x)$ is invertible $\forall x\in E$.
     Then $f$ is an open map.
 \end{thm}
 \begin{proof}
@@ -3851,9 +3852,9 @@ $\mathrm{D}f$ invertible throughout $E$ and $E$ is connected does not imply that
     \[
         \mathrm{D}_y F(a,b)\coloneqq
         \begin{bmatrix}
-            \frac{\partial F_1}{\partial y_1}(a,b)&\cdots&\frac{\partial F_1}{\partial y_n}(a,b)\\
+            \frac{\partial F_1}{\partial y_1}(a,b)&\cdots&\frac{\partial F_1}{\partial y_m}(a,b)\\
             \vdots&&\vdots\\
-            \frac{\partial F_m}{\partial y_1}(a,b)&\cdots&\frac{\partial F_m}{\partial y_n}(a,b)\\
+            \frac{\partial F_m}{\partial y_1}(a,b)&\cdots&\frac{\partial F_m}{\partial y_m}(a,b)\\
         \end{bmatrix}
     \]
     is nonsingular.
@@ -3922,7 +3923,7 @@ $\mathrm{D}f$ invertible throughout $E$ and $E$ is connected does not imply that
     \[
         \text{rank}(T) = \text{dim} \mathcal{R}(T) = \text{dim} X - \text{dim}\mathcal{N}(T).
     \]
-    If $X=\mathcal{R}^n$, $y=\mathcal{R}^m$, $T$ is then associate to a matrix $A$.
+    If $X=\mathbb{R}^n$, $y=\mathbb{R}^m$, $T$ is then associate to a matrix $A$.
     In this case
     \[
         \text{rank}(T) = \text{dim}(\text{span of columns of }A) = \text{dim}(\text{span of rows of }A).
@@ -3935,21 +3936,21 @@ $\mathrm{D}f$ invertible throughout $E$ and $E$ is connected does not imply that
             0 & 0\\
         \end{bmatrix}.
     \]
-    In other words, $\exists B\in GL(m)$ and $C\in GL(n)$, s.t.
+    In other words, $\exists B\in \mathrm{GL}(m)$ and $C\in \mathrm{GL}(n)$, s.t.
     \[
-        B\cdot A\cdot C=
+        B A C=
         \begin{bmatrix}
             I_r & 0\\
             0   & 0\\
         \end{bmatrix}.
     \]
-    Here $GL(m)$ stands for invertible $m\times m$ matrices.
+    Here $\mathrm{GL}(m)$ stands for invertible $m\times m$ matrices.
 \end{defn}
 The idea behind rank theorem is a nonlinear version of the above.
 
 \begin{prop}
     Let $X,Y$ be finite dimensional vector spaces.
-    $A\mapsto \text{rank}(A)$ is a lower semi continuous map from $\mathcal{L}(X,Y)$ into $\{0,1,...,\min\{\text{dim}X,\text{dim}Y\}\}$,
+    $A\mapsto \text{rank}(A)$ is a lower semi continuous map from $\mathcal{L}(X,Y)$ into $\{0,1,\ldots,\min\{\text{dim}X,\text{dim}Y\}\}$,
     i.e.
     \[
         \inf \lim_{T\rightarrow A} \text{rank}(T)\geq \text{rank}(A).
@@ -3959,7 +3960,7 @@ The idea behind rank theorem is a nonlinear version of the above.
     The limit on the LHS may not exist, so we use $\inf\lim$.
 \begin{proof}
     Suppose $\text{dim}X=n$ and $\text{rank}A=k$.
-    Then $A$ have a $k\times k$ minor (i.e. pick $k$ rows and $k$ columns of $A$) with nonzero determinant.
+    Then $A$ have a $k\times k$ minor (i.e.\ pick $k$ rows and $k$ columns of $A$) with nonzero determinant.
     Determinant of a given minor is a continuous map, so there exists a neighbourhood $U$ of $A$ s.t.\ $\forall T\in U$, some $k\times k$ minor has
     nonzero determinant.
     So the rank is $\geq k$.
@@ -3980,7 +3981,7 @@ The idea behind rank theorem is a nonlinear version of the above.
         nonsingular on $V$ and a linear isomorphism $G\in GL(\mathbb{R}^m)$, s.t.
         \[
             G\circ f\circ H(x) = (x_1,\ldots,x_r,0,\ldots,0)
-            +(0,\varphi(x_1,...,x_r))
+            +(0,\ldots,0,\varphi(x_1,\ldots,x_r))
         \]
         with $\mathrm{D}\varphi(H(a)) = 0$.
         Here $\varphi$ maps from $\mathbb{R}^{r}$ to $\mathbb{R}^{m-r}$.
@@ -3989,7 +3990,7 @@ The idea behind rank theorem is a nonlinear version of the above.
             If $\mathrm{D}f(a)$ has rank $r$, then $\exists$ open sets $U, V$ and bijection $H:V\rightarrow U$ (continuously differentiable with
             continuously differentiable inverse) and an isomorphism $G$ such that
             \[
-                G\circ f\circ H(x) = (x_1,...,x_r,0,\ldots,0) + (0,\psi(x_1,...,x_n)).
+                G\circ f\circ H(x) = (x_1,\ldots,x_r,0,\ldots,0) + (0,\ldots,0,\psi(x_1,\ldots,x_n)).
             \]
             with $D\psi(0) = 0$.
             Here $\psi$ maps from $\mathbb{R}^{n}$ to $\mathbb{R}^{m-r}$.
@@ -4022,10 +4023,10 @@ The idea behind rank theorem is a nonlinear version of the above.
             \[
                 f\circ H(y) = (y_1,\ldots,y_r,\psi(y)),
             \]
-            Now we need to show that $\psi$ is independent of $y_{r+1},...,y_n$.
+            Now we need to show that $\psi$ is independent of $y_{r+1},\ldots,y_n$.
             Decompose $y$ as $(u, v)$ where $u\in\mathbb{R}^r$ and $v\in\mathbb{R}^{n-r}$.
             \begin{description}
-                \item[Claim: ]$\mathrm{D}_r\psi \equiv 0$.\\
+                \item[Claim: ]$\mathrm{D}_v\psi \equiv 0$.\\
                     \[
                         \mathrm{D}(f\circ H) = \begin{bmatrix}
                             I_r&0\\
@@ -4033,25 +4034,20 @@ The idea behind rank theorem is a nonlinear version of the above.
                         \end{bmatrix}
                     \]
                     has rank equal to $r+\text{rank}\mathrm{D}_v(\psi)$.
-                    But $\mathrm{D}(f\circ H) = (\mathrm{D}f)\circ H$.
+                    But $\mathrm{D}(f\circ H) = (\mathrm{D}f)\circ (\mathrm{D}H)$.
                     $\mathrm{D}H$ has rank $r$, because $\mathrm{D}f$ has rank $r$ and $\mathrm{D}H$ is invertible.
                     So $\mathrm{D}_v\psi$ has rank $0$, i.e.
                     $\mathrm{D}_v\psi\equiv 0$.
             \end{description}
             Shrinking $V$, we may assume $V$ is convex.
+            %Question: Why do we need this?
             Then the claim implies $\psi$ is independent of $V$, i.e.
             \[
                 \psi(u,v) = \varphi(u),
             \]
             for some function $\varphi$ on $\pi(v)\coloneqq\{u:\exists v, s.t. (u,v)\in V\}$
-        \item By linear algebra, $\exists G\in GL(m)$, $H\in GL(n)$, s.t.\ 
-            \[
-                G\cdot \mathrm{D}f(a)\cdot H = \begin{bmatrix}
-                    I_r&0\\
-                    0&0\\
-               \end{bmatrix}.
-           \]
-           THus $G\circ f\circ H$ has the desired properties.
+        \item 
+            Use the beginning of the proof of the first part. Work up to the point where we show $\mathrm{D}_v\psi\equiv0$ and we don't need that for the second part.
     \end{enumerate}
 \end{proof}
 
@@ -4061,10 +4057,275 @@ The idea behind rank theorem is a nonlinear version of the above.
 \end{corollary}
 \begin{proof}
     \[
-        \text{new} G(y) = \text{old}G(y) - (0,\varphi(y_1,...,y_r)).
+        \text{new} G(y) = \text{old}G(y) - (0,\varphi(y_1,\ldots,y_r)).
     \]
 \end{proof}
 
+\subsection*{Higher Order Derivatives}
+\begin{thm}
+    Let $E$ be an open subset of $\mathbb{R}^n$.
+    Let $f:E\rightarrow\mathbb{R}$.
+    Assume that all second order partials of $f$ exist and are continuous throughout $E$.
+    Then $\forall 1\leq i, j\leq n$,
+    \[
+        \frac{\partial}{\partial x_i}\frac{\partial}{\partial x_j}f = \frac{\partial}{\partial x_j}\frac{\partial}{\partial x_i}f.
+    \]
+    Formally speaking, for $\frac{\partial}{\partial x_i}\frac{\partial}{\partial x_j}f$, we differentiate 1st w.r.t.\ the inner partial.
+\end{thm}
+Remark: By assymption, $\nabla f\coloneqq(\frac{\partial f}{\partial x_1},\ldots, \frac{\partial f}{\partial x_n})$ is continuously differentiable.
+So $\nabla f$ is continuous, so $f$ is differentiable throughout $E$.
+Furthermore, 
+\[
+    \mathrm{D}\nabla f = \mathrm{D}^2f = 
+    \begin{bmatrix}
+        \frac{\partial^2 f}{\partial x_1 \partial x_1} & \cdots &\frac{\partial^2f}{\partial x_1 \partial x_n}\\
+        \vdots&&\vdots\\
+        \frac{\partial^2 f}{\partial x_n \partial x_1} & \cdots &\frac{\partial^2f}{\partial x_n \partial x_n}\\
+    \end{bmatrix}.
+\]
+\begin{proof}
+    Reindexing sufficies to consider $i=1, j=2$.
+    Fixing all other variables, we may assume $n=2$.
+    Choose $x, h$, s.t.\ $x, x+h\in E$ and $h_1, h_2\neq0$.
+    Define
+    \[
+        S_hf(x) \coloneqq f(x+h)-f(x+(h_1,0)) - (f(x+(0,h_2)) - f(x)).
+    \]
+    Define $g_{h_2}(x) = f(x+(0,h_2)) - f(x)$.
+    Then $S_hf(x) = g_{h_2}(x+(h_1,0)) - g_{h_2}(x)$.
+    By one variable mean value theorem, $\exists \theta_1,\theta_2\in (0,1)$, s.t.
+    \[\begin{aligned}
+            S_nf(x) &= h_1\frac{\partial g_{h_2}}{\partial x_1}(x+(\theta_1h_1, 0))\\
+                    &=h_1\left(\frac{\partial f}{\partial x_1}(x+(\theta_1 h_1,h_2)) - \frac{\partial f}{\partial x_1}(x+(\theta_1h_1, 0))\right)\\
+                    &=h_2h_1\frac{\partial^2 f}{\partial x_2 \partial x_1}(x+(\theta_1 h_1, \theta_2 h_2)).
+    \end{aligned}\]
+    Rearrange:
+    \[
+        S_hf(x)
+        = f(x+h) - f(x+(0,h_2)) - (f(x+(h_1,0)) - f(x)).
+    \]
+    By the mean value theorem again, $\exists \nu_1, \nu_2\in(0,1)$, s.t.
+    \[
+        S_nf(x) = h_1h_2\frac{\partial^2 f}{\partial x_1 \partial x_2}(x+(\nu h_1, \nu h_2)).
+    \]
+    So we have
+    \[
+        \frac{\partial^2 f}{\partial x_2 \partial x_1}(x+(\theta_1 h_1, \theta_2 h_2)) = \frac{\partial^2 f}{\partial x_1 \partial x_2}(x+(\nu h_1, \nu h_2)).
+    \]
+    Send $h\rightarrow0$. By continuity, we have
+    \[
+        \frac{\partial^2 f}{\partial x_2 \partial x_1}(x) = \frac{\partial^2 f}{\partial x_1 \partial x_2}(x).
+    \]
+\end{proof}
 
+\begin{corollary}
+    Let $E$ be an open subset of $\mathbb{R}^n$.
+    Let $f:E\rightarrow \mathbb{R}$.
+    Assume all $k$-th order partials of $f$ exist and are continuous throughout $E$.
+    Then we can freely change order of differentiation in $\frac{\partial}{\partial x_{i_k}}\cdots \frac{\partial}{\partial x_{i_1}}f$ without changing the value.
+\end{corollary}
+\begin{proof}
+    Use case $k=2$ and induction, with the fact that any reordering of partials can be achieved by switching two at a time.
+\end{proof}
+
+\subsection*{Multivariate Taylor's Theorem with Remainder}
+\begin{notation}
+    Fix a dimension $n$.
+    A multiindex $\alpha$ is an element of $(\mathbb{Z}_{\geq0})^n$.
+    If $\alpha$ is a multiindex, 
+    \[
+        \mathrm{D}^\alpha = \left(\frac{\partial}{\partial x_1}\right)^{\alpha_1}\cdots\left(\frac{\partial}{\partial x_n}\right)^{\alpha_n}.
+    \]
+    If $x\in \mathbb{R}^n$,  then
+    \[
+        x^\alpha = x_1^{\alpha_1} x_2^{\alpha_2} \cdots x_n^{\alpha_n}.
+    \]
+    Define $|\alpha| = \alpha_1 + \cdots \alpha_n$, and $\alpha! = \alpha_1!\alpha_2!\cdots\alpha_n! $.
+    Define multinomial coefficient,
+    \[
+        \binom{|\alpha|}{\alpha} = \frac{|\alpha|!}{\alpha!}.
+    \]
+\end{notation}
+\begin{thm}[Multinomial theorem]
+    For $b\in\mathbb{R}^n$, $m\in\mathbb{N}$, then
+    \[
+        (b_1+\cdots b_n)^m = \sum_{\alpha:|\alpha| = m} \binom{|\alpha|}{\alpha} b^\alpha.
+    \]
+    When $n=2$, it is the binomial theorem,
+    \[
+        \binom{|\alpha|}{\alpha} = \frac{(\alpha_1+\alpha_2)!}{\alpha_1!\alpha_2!} = \binom{\alpha_1+\alpha_2}{\alpha_1} = \binom{\alpha_1+\alpha_2}{\alpha_2}.
+    \]
+\end{thm}
+\begin{proof}
+    Use induction on $n$.
+    Assume case $n-1$ is proved.
+    Write $b=(b',b_n)$, where $b'\in\mathbb{R}^{n-1}$.
+    We know that
+    \[\begin{aligned}
+            (b_1+\cdots+b_n)^m &= \sum_{j=0}^m \binom{m}{j}(b_1+\cdots +b_{n-1})^j b_n^{m-j}\\
+                               &=\sum_{j=0}^m \sum_{|\alpha|=j} \frac{m!}{j!(m-j)!}\cdot\frac{|\alpha|!}{\alpha!}(b')^\alpha b_n^{m-j}\\
+                               &=\sum_{j=0}^m \sum_{|\alpha|=j} \frac{m!}{j!(m-j)!}\cdot\frac{j!}{\alpha!}(b')^\alpha b_n^{m-j}\\
+                               &=\sum_{j=0}^m \sum_{|\alpha|=j} \frac{m!}{(m-j)!}\cdot\frac{1}{\alpha!}(b')^\alpha b_n^{m-j}\\
+    \end{aligned}\]
+    Let $\beta\coloneqq (\alpha, m-j)$, we have
+    \[
+        (b_1+\cdots+b_n)^m =\sum_{|\beta|=m}\frac{|\beta|!}{\beta!}b^\beta.
+    \]
+\end{proof}
+
+\begin{thm}[Multivariate Taylor's theorem with remainder]
+    Assume $f:B_r(a)\rightarrow\mathbb{R}$ is $(k+1)$-times continuously differentiable on $B_r(a)$.
+    For each $x\in B_r(a)$, $\exists \theta_x\in(0,1)$, s.t.\
+    \[
+        f(x) - \sum_{|\alpha|\leq k}\frac{1}{\alpha!}\mathrm{D}^\alpha f(a) (x-a)^\alpha = \sum_{|\beta|=k+1}\frac{1}{\beta!}\mathrm{D}^\beta f((1-\theta_x)a+\theta_xx)(x-a)^\beta.
+    \]
+\end{thm}
+\begin{proof}
+    Let $g(t) = f((1-t)a+tx)$.
+    By the one variable Taylor's theorem, $\exists t\in(0,1)$, s.t.
+    \[
+        g(1) = \sum_{m=0}^k \frac{1}{m!} g^{(m)}(0) + \frac{1}{(k+1)!} g^{(k+1)}(t).
+    \]
+    Now we need to simplify $g^{(m)}(t)$:
+    \[\begin{aligned}
+            g^{m}(0)
+            &=\left(\frac{\mathrm{d}}{\mathrm{d}t}\Big|_{t=0}\right)^m f(a+t(x-a))\\
+            &= ((x_1-a_1)\frac{\partial}{\partial y_1} + \cdots + (x_n-a_n)\frac{\partial}{\partial y_n})^m f(a)\\
+            &= \sum_{|\alpha|=m}\frac{m!}{\alpha!}(x-a)^\alpha\mathrm{D}^\alpha f(a).
+    \end{aligned}\]
+\end{proof}
+
+
+\begin{defn}
+    Let $E$ be an open subspace of $\mathbb{R}^n$.
+    $f:E\rightarrow \mathbb{R}$ is real analytic on $E$ if $\forall x_0\in E$, $\exists \epsilon>0$, s.t.\ 
+    \[
+        f(x)=\sum_\alpha \frac{1}{\alpha!}\mathrm{D}^\alpha f(x_0)(x-x_0)^\alpha,\quad |x-x_0|<\epsilon.
+    \]
+\end{defn}
+
+\subsection*{Second derivative test for critical points}
+By Clairait's theorem, if $f:\mathbb{R}^n\rightarrow\mathbb{R}$ is second order continuously differentiable, then
+\[
+    \mathrm{D}^2f=\begin{bmatrix}
+        \frac{\partial^2 f}{\partial x_1\partial x_1}&\cdots&\frac{\partial^2f}{\partial x_1\partial x_n}\\
+        \vdots&&\vdots
+        \frac{\partial^2 f}{\partial x_n\partial x_1}&\cdots&\frac{\partial^2f}{\partial x_n^2}\\
+    \end{bmatrix}
+\]
+is symmetric.
+The symmetric $n\times n$ matrix $A$ is positive definite if $\forall x\neq 0$, $x^TAx>0$.
+$A$ is negative definite if $\forall x\neq 0$, $x^TAx<0$, equivalently, ($-A$ is positive definite).
+
+If $A$ is positive or negative definite, then $A$ is nonsingular.
+But $A$ is nonsingular does not imply whether $A$ is positive definite or negative definite.
+
+\begin{eg}
+    The identity matrix, $I$, is positive definite.
+    And $-I$ is negative definite.
+    The matrix $\text{diag}(1,\ldots,1,-1,\ldots,-1)$ is neither positive definite nor negative definite.
+\end{eg}
+
+\begin{prop}
+    Let $A$ be an $n\times n$ matrix.
+    For $1\leq k\leq n$, let $\Delta_k$ denote the determinant of the upper left $k\times k$ minor of $A$.
+    Then $A$ is positive definite if and only if $\Delta_k$ is positive for $1\leq k\leq n$.
+    $A$ is negative definite if and only if $(-1)^k\Delta_k > 0$, for $1\leq k\leq n$.
+\end{prop}
+\begin{proof}
+    It suffices to prove the statement about positive definite matrices.
+    \begin{description}
+        \item[$\Leftarrow$:]
+            By induction.
+            If $n=1$, the base case trivially holds.
+            Assume we have proved for dimensions $k\leq n-1$.
+            Let $A$ be an $n\times n$ matrix and assume $\Delta_k>0$, $\forall k$.
+            Let $0\neq x\in \mathbb{R}^n$.
+            Look at $x^TAx$.
+            Write
+            \[
+                A=\begin{bmatrix}
+                    B & b\\
+                    b^T&a\\
+                \end{bmatrix},
+            \]
+            where $B$ is $n-1\times n-1$.
+            If $x_n=0$, $x^TAx = (x')^TBx' > 0$, where $x=(x',x_n)$, by induction hypothesis.
+            Now we may assume $x_n\neq 0$.
+            Multiplying $x$ by a constant, we can assume that $x_n=1$.
+            Then define
+            \[
+                f(x)\coloneqq x^TAx = x^TBx + 2x^Tb+a.
+            \]
+            Then $\nabla f(x) = 2Bx + 2b$.
+            So $f$ has a critical point at $x=-B^{-1}b$ ($B$ is invertible since $\Delta_{n-1}\neq 0$ by induction hypothesis).
+            Since $B$ is positive definite, $\lim_{\|x\|\rightarrow\infty} f(x)=\infty$.
+            So $\min f$ is achieved at the critical.
+            So $f(x)\geq f(-B^{-1}b)$, $\forall x$.
+            Finally,
+            \[\begin{aligned}
+                    f(-B^{-1}b) &= b^TB^{-1}BB^{-1}b-2b^TB^{-1}b+a\\
+                                &= b^TB^{-1}b+a\\
+                                &= (\text{det}B)^{-1}(-b^T((\text{det}B) B^{-1})b + (\text{det}B) a)\\
+                                &= (\text{det}B)^{-1} \text{det}A
+            \end{aligned}\]
+        \item[$\Rightarrow$:]
+            If $A$ is positive definite.
+            Then $\Delta_k\neq 0$, $\forall k$, otherwise, could found a vector $0\neq x=(x_1,\ldots,x_k,0,\ldots,0)$ such that $Ax=0$.
+            Considering $x=e_1$, $\Delta_1>0$.
+            Suppose $\Delta_1,\ldots,\Delta_{k-1}>0$ and $\Delta_k<0$.
+            Looking at vectors of the form $(x_1,\ldots,x_k,0,\ldots,0)$, we may assume $k=n$.
+            In the notation of the previous direction,
+            \[
+                \begin{bmatrix}
+                    -(B^{-1}b)^T&1
+                \end{bmatrix}
+                A 
+                \begin{bmatrix}
+                    -B^{-1}b\\
+                    1\\
+                \end{bmatrix}
+                < 0.
+            \]
+    \end{description}
+\end{proof}
+
+\begin{thm}[Second order derivative test]
+    Let $E$ be an open subset of $\mathbb{R}^n$.
+    Let $f:E\rightarrow \mathbb{R}$ be twice continuously differentiable on $E$.
+    Assume $\nabla f(x_0)=0$ ($x_0$ is a critical point) and that $\mathrm{D}^2f(x_0)$ is nonsingular ($x_0$ is a nondegenerate critical point),
+    \begin{enumerate}
+        \item If $\mathrm{D}^2f(x_0)$ is positive definite, $f$ has a strict local minimum at $x_0$ (Think $f(x) = x_1^2+\cdots+ x_n^2$).
+        \item If $\mathrm{D}^2f(x_0)$ is negative definite, $f$ has a strict local maximum at $x_0$ (Think $f(x) = -x_1^2-\cdots -x_n^2$).
+        \item If $\mathrm{D}^2f(x_0)$ is neither, then neither local maximum nor local minimum (Think $f(x) = x_1^2+\cdots+x_k^2-x_{k+1}^2-\cdots x_n^2$).
+    \end{enumerate}
+\end{thm}
+\begin{lemma}
+    Let $E$ be an open subset of $\mathbb{R}^n$.
+    If $f:E\rightarrow \mathbb{R}$ is twice continuously differentiable, then $\forall x\in E$,
+    \[
+        \lim_{h\rightarrow 0} \frac{|f(x_h)-f(x)-\mathrm{D}f(x) h - \frac{1}{2}h^T\mathrm{D}^2f(x)h|}{\|h\|^2} = 0.
+    \]
+\end{lemma}
+\begin{proof}
+    Let $x, x_h\in E$, with $h\neq 0$.
+    Let $\omega=h/\|h\|$.
+    Then $\|\omega\|=1$.
+    \[\begin{aligned}
+        f(x+h)-f(x)
+        &=\int_0^{\|h\|} \frac{\mathrm{d}}{\mathrm{d}t} f(x+t\omega)\,\mathrm{d}t\\
+        &=\int_0^{\|h\|} \mathrm{D}f(x+t\omega)\omega \,\mathrm{d}t\\
+        &=\mathrm{D}f(x)h + \int_0^{\|h\|}\omega^T\mathrm{D}^2f(x+t\omega)\omega(\|h\|-t)\,\mathrm{d}t\\
+        &=\mathrm{D}f(x)h + \frac{1}{2}h^T\mathrm{D}^2f(x)h
+          +\int_0^{\|h\|} \omega^T(\mathrm{D}^2f(x+t\omega)-\mathrm{D}^2f(x))\omega (\|h\|-t)\,\mathrm{d}t
+    \end{aligned}\]
+    Let $\epsilon(\|h\|) = \mathrm{D}^2f(x+t\omega)-\mathrm{D}^2f(x)$.
+    The error term
+    \[\begin{aligned}
+        |\int_0^{\|h\|} \omega^T(\mathrm{D}^2f(x+t\omega)-\mathrm{D}^2f(x))\omega (\|h\|-t)\,\mathrm{d}t|
+        &\leq\int_0^{\|h\|}\epsilon(\|h\|)(\|h\|-t)\,\mathrm{d}t\\
+        &=\frac{1}{2}\|h\|^2\epsilon(\|h\|).
+    \end{aligned}\]
+\end{proof}
 \end{document}
 
